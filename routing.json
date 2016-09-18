@@ -1,0 +1,19 @@
+[
+	{
+		"path": "news",
+		"controller": "controllers\\news@index",
+		"method":"get"
+	},
+	{
+		"path": ["news", "view", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\news@view"
+	},
+	{
+		"path": ["news", "archive", {"type":"dynamic", "name":"year", "regex":"/^(\\d){4}$/"}, {"type":"dynamic", "name":"month", "regex":"/^(\\d+){2}$/"}],
+		"controller": "controllers\\news@archive"
+	},
+	{
+		"path": ["news", "author", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\news@author"
+	}
+]
