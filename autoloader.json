@@ -53,6 +53,10 @@
 			"file":"views/news/author.php"
 		},
 		{
+			"classes":["controllers\\rss"],
+			"file":"controllers/rss.php"
+		},
+		{
 			"classes":["controllers\\sitemap"],
 			"file":"controllers/sitemap.php"
 		}

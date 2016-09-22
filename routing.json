@@ -15,5 +15,10 @@
 	{
 		"path": ["news", "author", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
 		"controller": "controllers\\news@author"
+	},
+	{
+		"path": ["news", "rss"],
+		"controller": "controllers\\rss@build"
 	}
+
 ]
