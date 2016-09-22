@@ -51,6 +51,10 @@
 		{
 			"classes":["views\\news\\author"],
 			"file":"views/news/author.php"
+		},
+		{
+			"classes":["controllers\\rss"],
+			"file":"controllers/rss.php"
 		}
 	]
 }
