@@ -1,0 +1,32 @@
+{
+	"name" : "clipone",
+	"title":"Clip One",
+	"version" : "1.0.0",
+	"author" : {
+		"name" : "Jeyserver",
+		"website" : "http://www.jeyserver.com/"
+	},
+	"autoload":"autoloader.json",
+	"languages":{
+		"fa_IR" : "langs/fa_IR.json"
+	},
+	"assets":[
+	],
+	"views":[
+		{
+			"name":"\\themes\\clipone\\views\\news\\panel\\published",
+			"parent":"\\packages\\news\\views\\panel\\published",
+			"file":"news.panel.list.published.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\news\\panel\\unpublished",
+			"parent":"\\packages\\news\\views\\panel\\unpublished",
+			"file":"news.panel.list.unpublished.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\news\\panel\\comment",
+			"parent":"\\packages\\news\\views\\panel\\comment",
+			"file":"news.panel.list.comment.php"
+		}
+	]
+}

@@ -19,6 +19,26 @@
 	{
 		"path": ["news", "rss"],
 		"controller": "controllers\\rss@build"
+	},
+	{
+		"path": ["userpanel", "news", "published"],
+		"controller": "controllers\\panel\\news@published",
+		"method": "get"
+	},
+	{
+		"path": ["userpanel", "news", "unpublished"],
+		"controller": "controllers\\panel\\news@unpublished",
+		"method": "get"
+	},
+	{
+		"path": ["userpanel", "news", "comments"],
+		"controller": "controllers\\panel\\news@comments",
+		"method": "get"
+	},
+	{
+		"path": ["userpanel", "news", "comments", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\panel\\news@comments",
+		"method": "get"
 	}
 
 ]

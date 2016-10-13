@@ -2,6 +2,7 @@
 	"permissions": "*",
 	"routing": "routing.json",
 	"autoload":"autoloader.json",
+	"frontend":"frontend",
 	"dependencies": ["base", "userpanel"],
 	"sitemap": [{
 		"type":"dynamic",

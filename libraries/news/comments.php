@@ -19,7 +19,9 @@ class comment extends dbObject{
 		'text' => array('type' => 'text', 'required' => true),
         'status' => array('type' => 'int', 'required' => true)
     );
-
+	protected $relations = array(
+		'new' => array('hasOne', 'packages\\news\\newpost', 'post')
+	);
 	protected function preLoad($data){
 		if(!isset($data['date'])){
 			$data['date'] = time();

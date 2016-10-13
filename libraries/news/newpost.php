@@ -6,6 +6,7 @@ use \packages\base\http;
 
 class newpost extends dbObject{
 	const published = 1;
+	const unpublished = 2;
 	protected $dbTable = "news_posts";
 	protected $primaryKey = "id";
 	protected $dbFields = array(

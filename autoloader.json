@@ -59,6 +59,30 @@
 		{
 			"classes":["controllers\\sitemap"],
 			"file":"controllers/sitemap.php"
+		},
+		{
+			"classes":["controllers\\panel\\news"],
+			"file":"controllers/panel.php"
+		},
+		{
+			"classes":["views\\panel\\published"],
+			"file":"views/panel/published.php"
+		},
+		{
+			"classes":["authorization"],
+			"file":"libraries/users/authorization.php"
+		},
+		{
+			"classes":["authentication"],
+			"file":"libraries/users/authentication.php"
+		},
+		{
+			"classes":["views\\panel\\unpublished"],
+			"file":"views/panel/unpublished.php"
+		},
+		{
+			"classes":["views\\panel\\comment"],
+			"file":"views/panel/comment.php"
 		}
 	]
 }

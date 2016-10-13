@@ -1,0 +1,35 @@
+{
+	"author": {
+		"name" : "mahdi aebdi",
+		"website" : "http://www.mhdabedi.tk/"
+	},
+	"rtl": true,
+	"phrases":{
+		"news":"اخبار",
+		"news.panel":"پنل اخبار",
+		"news.published":"منتشر شده ها",
+		"news.unpublished":"منتشر نشده ها",
+		"new.published":"منتشر شده",
+		"new.unpublished":"منتشر نشده",
+		"list":"لیست",
+		"news.comments":"نظر ها",
+		"news.title":"عنوان خبر",
+		"news.data":"تاریخ ارسال",
+		"news.description":"توضیحات خبر",
+		"news.author":"نویسنده",
+		"news.view":"تعداد بازدید",
+		"news.staus":"وضعیت",
+		"view":"مشاهده",
+		"edit":"ویرایش",
+		"No.news.unpublished":"خبر منتشر نشده ای وجود ندارد",
+		"comments.text":"متن نظر",
+		"comments.post":"خبر مربوطه",
+		"comments.date":"تاریخ ارسال",
+		"comments.name":"نام ارسال کننده",
+		"comments.email":"ایمیل ارسال کننده",
+		"comments.status":"وضعیت",
+		"comment.accepted":"پذیرفته شده",
+		"comment.pending":"در حال انتظار",
+		"comment.unverified":"رد شده"
+	}
+}
