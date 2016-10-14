@@ -34,6 +34,10 @@
 		{
 			"classes":["views\\news\\panel\\add"],
 			"file":"views/panel/add.php"
+		},
+		{
+			"classes":["views\\news\\panel\\commentDelete"],
+			"file":"views/panel/comment.delete.php"
 		}
 	]
 }

@@ -27,12 +27,7 @@
 	},
 	{
 		"path": ["userpanel", "news", "comments"],
-		"controller": "controllers\\panel\\news@comments",
-		"method": "get"
-	},
-	{
-		"path": ["userpanel", "news", "comments", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\panel\\news@comments",
+		"controller": "controllers\\panel\\comments@index",
 		"method": "get"
 	},
 	{
@@ -46,5 +41,14 @@
 	{
 		"path": ["userpanel", "news", "add"],
 		"controller": "controllers\\panel\\news@add"
+	},
+	{
+		"path": ["userpanel", "news", "comments", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\panel\\comments@index",
+		"method": "get"
+	},
+	{
+		"path": ["userpanel", "news", "comment", "delete", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\panel\\comments@delete"
 	}
 ]

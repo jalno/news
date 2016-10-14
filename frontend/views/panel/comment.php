@@ -44,18 +44,18 @@ class comment extends newscomment{
 		}
 	}
 	public function setButtons(){
-		$this->setButton('news_view', $this->canView, array(
+		$this->setButton('comment_view', $this->canView, array(
 			'title' => translator::trans('view'),
 			'icon' => 'fa fa-files-o',
 			'classes' => array('btn', 'btn-xs', 'btn-green')
 		));
-		$this->setButton('news_edit', $this->canEdit, array(
+		$this->setButton('comment_edit', $this->canEdit, array(
 			'title' => translator::trans('edit'),
 			'icon' => 'fa fa-edit',
 			'classes' => array('btn', 'btn-xs', 'btn-warning')
 		));
-		$this->setButton('news_delete', $this->canDel, array(
-			'title' => translator::trans('news.delete'),
+		$this->setButton('comment_delete', $this->canDel, array(
+			'title' => translator::trans('delete'),
 			'icon' => 'fa fa-times',
 			'classes' => array('btn', 'btn-xs', 'btn-bricky')
 		));

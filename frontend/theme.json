@@ -37,6 +37,11 @@
 			"name":"\\themes\\clipone\\views\\news\\panel\\add",
 			"parent":"\\packages\\news\\views\\panel\\add",
 			"file":"new.add.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\news\\panel\\commentDelete",
+			"parent":"\\packages\\news\\views\\panel\\commentDelete",
+			"file":"comment.delete.php"
 		}
 	]
 }

@@ -8,6 +8,7 @@
 		"news":"اخبار",
 		"new.add":"اضافه کردن خبر",
 		"new":"خبر",
+		"comment":"نظر",
 		"news.panel":"پنل اخبار",
 		"new.published":"منتشر شده",
 		"new.unpublished":"منتشر نشده",
@@ -36,6 +37,7 @@
 		"comment.unverified":"رد شده",
 		"upload.file":"بارگذاری فایل",
 		"attention":"توجه",
-		"new.delete.warning":"آیا از حذف خبر به شناسه #{new.id} اطمیان دارید؟ این عملیات بدون بازگشت است"
+		"new.delete.warning":"آیا از حذف خبر به شناسه #{new.id} اطمیان دارید؟ این عملیات بدون بازگشت است",
+		"comment.delete.warning":"آیا شما از حذف نظر به شناسه #{comment.id} اطمینان دارید؟ این عملیات بدون بازگشت است."
 	}
 }

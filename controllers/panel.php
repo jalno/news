@@ -31,18 +31,6 @@ class news extends controller{
 		$this->response->setView($view);
 		return $this->response;
 	}
-	public function comments($data){
-		authorization::haveOrFail('list');
-		$view = view::byName("\\packages\\news\\views\\panel\\comment");
-		$comment = new comment;
-		if($data['id']){
-			$comment->where('post', $data['id']);
-		}
-		$comment->orderBy('date', 'DESC');
-		$view->setComments($comment->get());
-		$this->response->setView($view);
-		return $this->response;
-	}
 	public function edit($data){
 		authorization::haveOrFail('edit');
 		$view = view::byName("\\packages\\news\\views\\panel\\edit");

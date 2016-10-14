@@ -65,6 +65,10 @@
 			"file":"controllers/panel.php"
 		},
 		{
+			"classes":["controllers\\panel\\comments"],
+			"file":"controllers/panel.comments.php"
+		},
+		{
 			"classes":["views\\panel\\index"],
 			"file":"views/panel/index.php"
 		},
@@ -91,6 +95,10 @@
 		{
 			"classes":["views\\panel\\add"],
 			"file":"views/panel/add.php"
+		},
+		{
+			"classes":["views\\panel\\commentDelete"],
+			"file":"views/panel/comment.delete.php"
 		}
 	]
 }

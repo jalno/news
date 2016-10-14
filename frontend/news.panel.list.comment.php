@@ -46,9 +46,9 @@ $this->the_header();
 						<tbody>
 							<?php
 							foreach($this->getComments() as $row){
-								$this->setButtonParam('comments_view', 'link', userpanel\url("comments/view/".$row->id));
-								$this->setButtonParam('comments_edit', 'link', userpanel\url("comments/edit/".$row->id));
-								$this->setButtonParam('comments_delete', 'link', userpanel\url("comments/delete/".$row->id));
+								$this->setButtonParam('comment_view', 'link', userpanel\url("news/comment/view/".$row->id));
+								$this->setButtonParam('comment_edit', 'link', userpanel\url("news/comment/edit/".$row->id));
+								$this->setButtonParam('comment_delete', 'link', userpanel\url("news/comment/delete/".$row->id));
 								$statusClass = utility::switchcase($row->status, array(
 									'label label-warning' => comment::pending,
 									'label label-success' => comment::accepted,
