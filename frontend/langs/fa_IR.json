@@ -23,6 +23,7 @@
 		"news.image":"تصویر",
 		"view":"مشاهده",
 		"edit":"ویرایش",
+		"dekete":"حذف",
 		"update":"بروزرسانی",
 		"comments.text":"متن نظر",
 		"comments.post":"خبر مربوطه",
@@ -33,6 +34,8 @@
 		"comment.accepted":"پذیرفته شده",
 		"comment.pending":"در حال انتظار",
 		"comment.unverified":"رد شده",
-		"upload.file":"بارگذاری فایل"
+		"upload.file":"بارگذاری فایل",
+		"attention":"توجه",
+		"new.delete.warning":"آیا از حذف خبر به شناسه #{new.id} اطمیان دارید؟ این عملیات بدون بازگشت است"
 	}
 }

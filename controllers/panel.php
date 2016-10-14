@@ -131,10 +131,29 @@ class news extends controller{
 				$this->response->setStatus(true);
 				$this->response->Go(userpanel\url('news'));
 			}catch(inputValidation $error){
-				var_dump($error);
-				exit();
 				$view->setFormError(FormError::fromException($error));
 			}
+		}else{
+			$this->response->setStatus(true);
+		}
+		$this->response->setView($view);
+		return $this->response;
+	}
+	public function delete($data){
+		authorization::haveOrFail('delete');
+		$view = view::byName("\\packages\\news\\views\\panel\\delete");
+		$new = newpost::byId($data['id']);
+		$view->setNew($new);
+		$this->response->setStatus(false);
+		if(http::is_post()){
+			try {
+				$new->delete();
+				$this->response->setStatus(true);
+				$this->response->Go(userpanel\url('news'));
+			}catch(inputValidation $error){
+				$view->setFormError(FormError::fromException($error));
+			}
+
 		}else{
 			$this->response->setStatus(true);
 		}

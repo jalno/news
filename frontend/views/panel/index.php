@@ -54,7 +54,7 @@ class index extends newsIndex{
 			'classes' => array('btn', 'btn-xs', 'btn-warning')
 		));
 		$this->setButton('news_delete', $this->canDel, array(
-			'title' => translator::trans('news.delete'),
+			'title' => translator::trans('delete'),
 			'icon' => 'fa fa-times',
 			'classes' => array('btn', 'btn-xs', 'btn-bricky')
 		));

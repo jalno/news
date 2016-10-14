@@ -27,6 +27,11 @@
 			"name":"\\themes\\clipone\\views\\news\\panel\\edit",
 			"parent":"\\packages\\news\\views\\panel\\edit",
 			"file":"new.edit.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\news\\panel\\delete",
+			"parent":"\\packages\\news\\views\\panel\\delete",
+			"file":"new.delete.php"
 		}
 	]
 }
