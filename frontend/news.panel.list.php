@@ -20,7 +20,9 @@ $this->the_header();
 			<div class="panel-heading">
 				<i class="fa fa-envelope"></i> <?php echo translator::trans('news'); ?>
 				<div class="panel-tools">
-					<a class="btn btn-xs btn-link tooltips" title="<?php echo translator::trans('news.add'); ?>" href="<?php echo userpanel\url('news/new'); ?>"><i class="fa fa-plus"></i></a>
+					<?php if($this->canAdd){ ?>
+					<a class="btn btn-xs btn-link tooltips" title="<?php echo translator::trans('news.add'); ?>" href="<?php echo userpanel\url('news/add'); ?>"><i class="fa fa-plus"></i></a>
+					<?php } ?>
 					<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 				</div>
 			</div>
@@ -45,7 +47,6 @@ $this->the_header();
 						<tbody>
 							<?php
 							foreach($this->getNews() as $row){
-								$this->setButtonParam('news_view', 'link', userpanel\url("news/view/".$row->id));
 								$this->setButtonParam('news_edit', 'link', userpanel\url("news/edit/".$row->id));
 								$this->setButtonParam('news_delete', 'link', userpanel\url("news/delete/".$row->id));
 								$statusClass = utility::switchcase($row->status, array(
@@ -63,10 +64,10 @@ $this->the_header();
 							?>
 							<tr>
 								<td class="center"><?php echo $row->id; ?></td>
-								<td><?php echo $row->title; ?></td>
-								<td><?php echo date::format('Y/m/d H:i', $row->date); ?></td>
+								<td><a href="<?php echo base\url("news/view/".$row->id); ?>"><?php echo $row->title; ?></a></td>
+								<td class="ltr"><?php echo date::format('Y/m/d H:i', $row->date); ?></td>
 								<td><a href="<?php echo userpanel\url('users/view/'.$row->author->id); ?>"><?php echo $row->author->name." ".$row->author->lastname; ?></a></td>
-								<td><?php echo $row->view; ?></td>
+								<td><span class="badge"><?php echo $row->view; ?></span></td>
 								<td><a class="badge" href="<?php echo $comment  ?>"><?php echo count($row->comments); ?></a></td>
 								<td class="hidden-xs"><span class="<?php echo $statusClass; ?>"><?php echo translator::trans($statusTxt); ?></span></td>
 								<?php

@@ -42,5 +42,9 @@
 	{
 		"path": ["userpanel", "news", "delete", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
 		"controller": "controllers\\panel\\news@delete"
+	},
+	{
+		"path": ["userpanel", "news", "add"],
+		"controller": "controllers\\panel\\news@add"
 	}
 ]

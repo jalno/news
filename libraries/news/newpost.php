@@ -15,7 +15,7 @@ class newpost extends dbObject{
         'description' => array('type' => 'text', 'required' => true),
         'author' => array('type' => 'int', 'required' => true),
         'content' => array('type' => 'text', 'required' => true),
-		'view' => array('type' => 'int', 'required' => true),
+		'view' => array('type' => 'int'),
 		'image' => array('type' => 'text'),
         'status' => array('type' => 'int', 'required' => true),
     );

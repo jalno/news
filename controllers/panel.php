@@ -95,13 +95,13 @@ class news extends controller{
 				}
 				$news->author = $inputs['author'];
 				$news->date = $inputs['date'];
-				if(isset($inputs['image']) and $inputs['image']['tmp_name'] != ''){
-					$type = getimagesize($inputs['image']['tmp_name']);
-					if(in_array($type[2], array(IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG))){
-						if($inputs['image']['error'] == 0){
+				if(isset($inputs['image'])){
+					if($inputs['image']['error'] == 0){
+						$type = getimagesize($inputs['image']['tmp_name']);
+						if(in_array($type[2], array(IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG))){
 							$name = md5_file($inputs['image']['tmp_name']);
 							if($type[2] == IMAGETYPE_JPEG){
-								$type_name = '.jpeg';
+								$type_name = '.jpg';
 							}elseif($type[2] == IMAGETYPE_GIF){
 								$type_name = '.gif';
 							}elseif($type[2] == IMAGETYPE_PNG){
@@ -109,30 +109,36 @@ class news extends controller{
 							}
 							$directory = __DIR__.'/../storage/'.$name.$type_name;
 							if(move_uploaded_file($inputs['image']['tmp_name'], $directory)){
-
-								$newspackage = packages::package('news');
-
-								$news->image = $newspackage->url("storage/".$name.$type_name);
+								$news->image = "storage/".$name.$type_name;
 							}else{
 								throw new inputValidation("image");
 							}
 						}else{
-							throw new \Exception("image");
+							throw new inputValidation("image");
 						}
-					}else{
+					}elseif($inputs['image']['error'] != 4){
 						throw new inputValidation("image");
 					}
 				}
-				$news->status = $inputs['status'];
-				$news->content = $inputs['text'];
-				$news->title = $inputs['title'];
-				$news->description = $inputs['description'];
+				if(isset($inputs['status'])){
+					$news->status = $inputs['status'];
+				}
+				if(isset($inputs['text'])){
+					$news->content = $inputs['text'];
+				}
+				if(isset($inputs['title'])){
+					$news->title = $inputs['title'];
+				}
+				if(isset($inputs['description'])){
+					$news->description = $inputs['description'];
+				}
 				$news->save();
 				$this->response->setStatus(true);
-				$this->response->Go(userpanel\url('news'));
+				$this->response->Go(userpanel\url('news/edit/'.$news->id));
 			}catch(inputValidation $error){
 				$view->setFormError(FormError::fromException($error));
 			}
+			$view->setDataForm($this->inputsvalue($inputsRules));
 		}else{
 			$this->response->setStatus(true);
 		}
@@ -157,6 +163,92 @@ class news extends controller{
 		}else{
 			$this->response->setStatus(true);
 		}
+		$this->response->setView($view);
+		return $this->response;
+	}
+	public function add(){
+		authorization::haveOrFail('add');
+		$view = view::byName("\\packages\\news\\views\\panel\\add");
+		$inputsRules = array(
+			'title' => array(
+				'type' => 'string'
+			),
+			'author' => array(
+				'type' => 'number'
+			),
+			'description' => array(
+				'type' => 'string'
+			),
+			'date' => array(
+				'type' => 'date'
+			),
+			'status' => array(
+				'type' => 'number',
+				'values' => array(newpost::published, newpost::unpublished)
+			),
+			'image' => array(
+				'type' => 'file',
+				'optional' => true,
+				'empty' => true
+			),
+			'text' => array()
+		);
+
+		$this->response->setStatus(false);
+		if(http::is_post()){
+			try{
+				$inputs = $this->checkinputs($inputsRules);
+				$inputs['author'] = user::byId($inputs['author']);
+				$inputs['date'] = date::strtotime($inputs['date']);
+				if(!$inputs['author']){
+					throw new inputValidation("author");
+				}
+				if($inputs['date'] <= 0){
+					throw new inputValidation("date");
+				}
+				$news = new newpost;
+				$news->author = $inputs['author'];
+				$news->date = $inputs['date'];
+				if(isset($inputs['image'])){
+					if($inputs['image']['error'] == 0){
+						$type = getimagesize($inputs['image']['tmp_name']);
+						if(in_array($type[2], array(IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG))){
+							$name = md5_file($inputs['image']['tmp_name']);
+							if($type[2] == IMAGETYPE_JPEG){
+								$type_name = '.jpg';
+							}elseif($type[2] == IMAGETYPE_GIF){
+								$type_name = '.gif';
+							}elseif($type[2] == IMAGETYPE_PNG){
+								$type_name = '.png';
+							}
+							$directory = __DIR__.'/../storage/'.$name.$type_name;
+							if(move_uploaded_file($inputs['image']['tmp_name'], $directory)){
+								$news->image = "storage/".$name.$type_name;
+							}else{
+								throw new inputValidation("image");
+							}
+						}else{
+							throw new inputValidation("image");
+						}
+					}elseif($inputs['image']['error'] != 4){
+						throw new inputValidation("image");
+					}
+				}
+				$news->status = $inputs['status'];
+				$news->content = $inputs['text'];
+				$news->title = $inputs['title'];
+				$news->description = $inputs['description'];
+				$news->save();
+				$this->response->setStatus(true);
+				$this->response->Go(userpanel\url('news/edit/'.$news->id));
+			}catch(inputValidation $error){
+				$view->setFormError(FormError::fromException($error));
+			}
+			$view->setDataForm($this->inputsvalue($inputsRules));
+		}else{
+			$this->response->setStatus(true);
+		}
+
 		$this->response->setView($view);
 		return $this->response;
 	}

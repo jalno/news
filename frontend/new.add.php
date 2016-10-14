@@ -16,19 +16,18 @@ $this->the_header();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-edit"></i>
-                <span><?php echo translator::trans("edit").' '.translator::trans("new").' #'.$this->getNew()->id; ?></span>
+                <span><?php echo translator::trans("add").' '.translator::trans("new") ?></span>
 				<div class="panel-tools">
 					<a class="btn btn-xs btn-link tooltips" title="<?php echo translator::trans('add'); ?>" href="#product-add" data-toggle="modal" data-original-title=""><i class="fa fa-plus"></i></a>
 				</div>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <form class="create_form" action="<?php echo userpanel\url('news/edit/'.$this->getNew()->id) ?>" method="post" enctype="multipart/form-data">
+                    <form class="create_form" action="<?php echo userpanel\url('news/add'); ?>" method="post" enctype="multipart/form-data">
                         <div class="col-md-6">
 	                        <?php $this->createField(array(
 								'name' => 'title',
-								'label' => translator::trans("news.title"),
-								'value' => $this->getNew()->title
+								'label' => translator::trans("news.title")
 							));
 							?>
 							<div class="form-group">
@@ -37,7 +36,7 @@ $this->the_header();
 									<div class="fileupload fileupload-new" data-provides="fileupload">
 										<div class="news-image">
 											<div class="fileupload-new thumbnail">
-										        <img src="<?php echo $this->getImage($this->getNew()); ?>" alt="newsImage">
+										        <img src="<?php echo $this->getImage(); ?>" alt="newsImage">
 										    </div>
 											<div class="fileupload-preview fileupload-exists thumbnail"></div>
 										    <div class="news-image-buttons">
@@ -60,16 +59,15 @@ $this->the_header();
 							</div>
                         </div>
 						<div class="col-md-6">
-							<input type="hidden" name="author" value="<?php echo $this->getNew()->author->id; ?>">
+							<input type="hidden" name="author" value="<?php echo $this->getDataForm('author'); ?>">
 							<?php $this->createField(array(
 								'name' => 'author_name',
 								'label' => translator::trans("news.author"),
-								'value' => $this->getNew()->author->name.' '.$this->getNew()->author->lastname
 							));
 							$this->createField(array(
 								'name' => 'date',
 								'label' => translator::trans("news.date"),
-								'value' => date::format('Y/m/d H:i', $this->getNew()->date),
+								'value' => date::format('Y/m/d H:i', time()),
 								'class' => 'form-control ltr'
 							));
 							$this->createField(array(
@@ -85,14 +83,13 @@ $this->the_header();
 										'title' => translator::trans("new.unpublished"),
 										'value' => newpost::unpublished
 									)
-								),
-								'value' => $this->getNew()->status
+								)
 							));
-							$this->createField(array(
+
+	                    	$this->createField(array(
 								'type' => 'textarea',
 								'name' => 'description',
 								'label' => translator::trans("news.description"),
-								'value' => $this->getNew()->description,
 								'rows' => 4
 							));
 							?>
@@ -102,8 +99,7 @@ $this->the_header();
 								'name' => 'text',
 								'type' => 'textarea',
 								'label' => translator::trans("news.text"),
-								'class' => 'ckeditor',
-								'value' => $this->getNew()->content
+								'class' => 'ckeditor'
 							));
 							?>
 						</div>

@@ -43,11 +43,6 @@ class index extends newsIndex{
 		}
 	}
 	public function setButtons(){
-		$this->setButton('news_view', $this->canView, array(
-			'title' => translator::trans('view'),
-			'icon' => 'fa fa-files-o',
-			'classes' => array('btn', 'btn-xs', 'btn-green')
-		));
 		$this->setButton('news_edit', $this->canEdit, array(
 			'title' => translator::trans('edit'),
 			'icon' => 'fa fa-edit',

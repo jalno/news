@@ -30,6 +30,10 @@
 		{
 			"classes":["views\\news\\panel\\delete"],
 			"file":"views/panel/delete.php"
+		},
+		{
+			"classes":["views\\news\\panel\\add"],
+			"file":"views/panel/add.php"
 		}
 	]
 }
