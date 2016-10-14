@@ -50,5 +50,9 @@
 	{
 		"path": ["userpanel", "news", "comment", "delete", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
 		"controller": "controllers\\panel\\comments@delete"
+	},
+	{
+		"path": ["userpanel", "news", "comment", "edit", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\panel\\comments@edit"
 	}
 ]

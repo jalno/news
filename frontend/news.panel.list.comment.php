@@ -46,7 +46,6 @@ $this->the_header();
 						<tbody>
 							<?php
 							foreach($this->getComments() as $row){
-								$this->setButtonParam('comment_view', 'link', userpanel\url("news/comment/view/".$row->id));
 								$this->setButtonParam('comment_edit', 'link', userpanel\url("news/comment/edit/".$row->id));
 								$this->setButtonParam('comment_delete', 'link', userpanel\url("news/comment/delete/".$row->id));
 								$statusClass = utility::switchcase($row->status, array(
@@ -63,7 +62,7 @@ $this->the_header();
 							<tr>
 								<td class="center"><?php echo $row->id; ?></td>
 								<td><?php echo $row->text; ?></td>
-								<td><a href="<?php echo userpanel\url("news/view/".$row->new->id); ?>"><?php echo $row->new->title; ?></a></td>
+								<td><a href="<?php echo base\url("news/view/".$row->new->id); ?>"><?php echo $row->new->title; ?></a></td>
 								<td><?php echo date::format('Y/m/d H:i', $row->date); ?></td>
 								<td><?php echo $row->name; ?></td>
 								<td><?php echo $row->email; ?></td>

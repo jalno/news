@@ -44,11 +44,6 @@ class comment extends newscomment{
 		}
 	}
 	public function setButtons(){
-		$this->setButton('comment_view', $this->canView, array(
-			'title' => translator::trans('view'),
-			'icon' => 'fa fa-files-o',
-			'classes' => array('btn', 'btn-xs', 'btn-green')
-		));
 		$this->setButton('comment_edit', $this->canEdit, array(
 			'title' => translator::trans('edit'),
 			'icon' => 'fa fa-edit',

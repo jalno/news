@@ -55,4 +55,68 @@ class comments extends controller{
 		$this->response->setView($view);
 		return $this->response;
 	}
+	public function edit($data){
+		authorization::haveOrFail('comments_edit');
+		$view = view::byName("\\packages\\news\\views\\panel\\commentEdit");
+
+		$comment = comment::byId($data['id']);
+		$view->setComment($comment);
+		$inputsRules = array(
+			'name' => array(
+				'type' => 'string',
+				'optional' => true
+			),
+			'email' => array(
+				'type' => 'email',
+				'optional' => true
+			),
+			'text' => array(
+				'optional' => true
+			),
+			'date' => array(
+				'type' => 'date',
+				'optional' => true
+			),
+			'status' => array(
+				'type' => 'number',
+				'optional' => true,
+				'values' => array(comment::accepted, comment::pending, comment::unverified)
+			)
+		);
+		$this->response->setStatus(false);
+		if(http::is_post()){
+			try {
+				$inputs = $this->checkinputs($inputsRules);
+				$inputs['date'] = date::strtotime($inputs['date']);
+				if($inputs['date'] <= 0){
+					throw new inputValidation("date");
+				}
+				if(isset($inputs['name'])){
+					$comment->name = $inputs['name'];
+				}
+				if(isset($inputs['email'])){
+					$comment->email = $inputs['email'];
+				}
+				if(isset($inputs['text'])){
+					$comment->text = $inputs['text'];
+				}
+				if(isset($inputs['date'])){
+					$comment->date = $inputs['date'];
+				}
+				if(isset($inputs['status'])){
+					$comment->status = $inputs['status'];
+				}
+				$comment->save();
+				$this->response->setStatus(true);
+				$this->response->Go(userpanel\url('news/comment/edit/'.$comment->id));
+
+			}catch(inputValidation $error){
+				$view->setFormError(FormError::fromException($error));
+			}
+		}else{
+			$this->response->setStatus(true);
+		}
+		$this->response->setView($view);
+		return $this->response;
+	}
 }
