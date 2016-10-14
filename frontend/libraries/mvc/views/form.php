@@ -43,9 +43,18 @@ trait formTrait{
 			}
 		}elseif($options['type'] == 'select'){
 			$code .= "<select";
+		}elseif($options['type'] == 'textarea'){
+			$code .= "<textarea";
+			if(isset($option['id'])){
+				$code .= " id=\"{$option['id']}\"";
+			}
+			if(isset($options['rows'])){
+				$code.= " rows=\"{$options['rows']}\"";
+			}
 		}else{
 			$code .= "<input type=\"{$options['type']}\" value=\"{$options['value']}\"";
 		}
+
 		if($options['type'] != 'radio'){
 			$code .= " name=\"{$options['name']}\"";
 			if($options['class']){
@@ -62,6 +71,9 @@ trait formTrait{
 		}
 		if($options['type'] == 'radio'){
 			$code .= "</div>";
+		}
+		if($options['type'] == 'textarea'){
+			$code .= "{$options['value']}</textarea>";
 		}
 		if($error){
 			$text = null;

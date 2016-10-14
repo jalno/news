@@ -1,6 +1,6 @@
 <?php
 namespace themes\clipone\views\news\panel;
-use \packages\news\views\panel\published as newspublished;
+use \packages\news\views\panel\index as newsIndex;
 use \packages\userpanel;
 use \themes\clipone\navigation;
 use \themes\clipone\navigation\menuItem;
@@ -8,38 +8,37 @@ use \themes\clipone\views\listTrait;
 use \themes\clipone\viewTrait;
 use \packages\base\translator;
 
-class published extends newspublished{
+class index extends newsIndex{
 	use viewTrait,listTrait;
 	function __beforeLoad(){
 		$this->setTitle(array(
-			translator::trans('news'),
 			translator::trans('list'),
-			translator::trans('news.published')
+			translator::trans('news')
 		));
-		navigation::active("news/published");
+		navigation::active("news");
 		$this->setButtons();
 	}
 	public static function onSourceLoad(){
 		parent::onSourceLoad();
 		if(parent::$navigation){
+			$addnew = new menuItem("addnew");
+			$addnew->setTitle(translator::trans('new.add'));
+			$addnew->setURL(userpanel\url('news/add'));
+
 			$comments = new menuItem("comments");
 			$comments->setTitle(translator::trans('news.comments'));
 			$comments->setURL(userpanel\url('news/comments'));
 
-			$unpublished = new menuItem("unpublished");
-			$unpublished->setTitle(translator::trans('news.unpublished'));
-			$unpublished->setURL(userpanel\url('news/unpublished'));
-
-			$published = new menuItem("published");
-			$published->setTitle(translator::trans('news.published'));
-			$published->setURL(userpanel\url('news/published'));
+			$index = new menuItem("index");
+			$index->setTitle(translator::trans('news'));
+			$index->setURL(userpanel\url('news'));
 
 			$item = new menuItem("news");
 			$item->setTitle(translator::trans('news'));
 			$item->setIcon('fa fa-envelope');
+			$item->addItem($addnew);
 			$item->addItem($comments);
-			$item->addItem($unpublished);
-			$item->addItem($published);
+			$item->addItem($index);
 			navigation::addItem($item);
 		}
 	}

@@ -14,19 +14,19 @@
 	],
 	"views":[
 		{
-			"name":"\\themes\\clipone\\views\\news\\panel\\published",
-			"parent":"\\packages\\news\\views\\panel\\published",
-			"file":"news.panel.list.published.php"
-		},
-		{
-			"name":"\\themes\\clipone\\views\\news\\panel\\unpublished",
-			"parent":"\\packages\\news\\views\\panel\\unpublished",
-			"file":"news.panel.list.unpublished.php"
+			"name":"\\themes\\clipone\\views\\news\\panel\\index",
+			"parent":"\\packages\\news\\views\\panel\\index",
+			"file":"news.panel.list.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\comment",
 			"parent":"\\packages\\news\\views\\panel\\comment",
 			"file":"news.panel.list.comment.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\news\\panel\\edit",
+			"parent":"\\packages\\news\\views\\panel\\edit",
+			"file":"new.edit.php"
 		}
 	]
 }

@@ -65,8 +65,8 @@
 			"file":"controllers/panel.php"
 		},
 		{
-			"classes":["views\\panel\\published"],
-			"file":"views/panel/published.php"
+			"classes":["views\\panel\\index"],
+			"file":"views/panel/index.php"
 		},
 		{
 			"classes":["authorization"],
@@ -77,12 +77,12 @@
 			"file":"libraries/users/authentication.php"
 		},
 		{
-			"classes":["views\\panel\\unpublished"],
-			"file":"views/panel/unpublished.php"
-		},
-		{
 			"classes":["views\\panel\\comment"],
 			"file":"views/panel/comment.php"
+		},
+		{
+			"classes":["views\\panel\\edit"],
+			"file":"views/panel/edit.php"
 		}
 	]
 }

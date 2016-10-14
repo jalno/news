@@ -6,22 +6,24 @@
 	"rtl": true,
 	"phrases":{
 		"news":"اخبار",
+		"new.add":"اضافه کردن خبر",
+		"new":"خبر",
 		"news.panel":"پنل اخبار",
-		"news.published":"منتشر شده ها",
-		"news.unpublished":"منتشر نشده ها",
 		"new.published":"منتشر شده",
 		"new.unpublished":"منتشر نشده",
 		"list":"لیست",
 		"news.comments":"نظر ها",
 		"news.title":"عنوان خبر",
-		"news.data":"تاریخ ارسال",
+		"news.date":"تاریخ ارسال",
 		"news.description":"توضیحات خبر",
 		"news.author":"نویسنده",
 		"news.view":"تعداد بازدید",
-		"news.staus":"وضعیت",
+		"news.status":"وضعیت",
+		"news.text":"متن خبر",
+		"news.image":"تصویر",
 		"view":"مشاهده",
 		"edit":"ویرایش",
-		"No.news.unpublished":"خبر منتشر نشده ای وجود ندارد",
+		"update":"بروزرسانی",
 		"comments.text":"متن نظر",
 		"comments.post":"خبر مربوطه",
 		"comments.date":"تاریخ ارسال",
@@ -30,6 +32,7 @@
 		"comments.status":"وضعیت",
 		"comment.accepted":"پذیرفته شده",
 		"comment.pending":"در حال انتظار",
-		"comment.unverified":"رد شده"
+		"comment.unverified":"رد شده",
+		"upload.file":"بارگذاری فایل"
 	}
 }

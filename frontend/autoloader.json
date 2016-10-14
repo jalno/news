@@ -16,16 +16,16 @@
 			"file":"libraries/mvc/views/form.php"
 		},
 		{
-			"classes":["views\\news\\panel\\published"],
-			"file":"views/panel/published.php"
-		},
-		{
-			"classes":["views\\news\\panel\\unpublished"],
-			"file":"views/panel/unpublished.php"
+			"classes":["views\\news\\panel\\index"],
+			"file":"views/panel/index.php"
 		},
 		{
 			"classes":["views\\news\\panel\\comment"],
 			"file":"views/panel/comment.php"
+		},
+		{
+			"classes":["views\\news\\panel\\edit"],
+			"file":"views/panel/edit.php"
 		}
 	]
 }

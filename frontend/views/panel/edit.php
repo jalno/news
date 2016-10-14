@@ -1,23 +1,30 @@
 <?php
 namespace themes\clipone\views\news\panel;
-use \packages\news\views\panel\comment as newscomment;
+use \packages\news\views\panel\edit as newEdit;
+use \packages\base\frontend\theme;
 use \packages\userpanel;
 use \themes\clipone\navigation;
 use \themes\clipone\navigation\menuItem;
-use \themes\clipone\views\listTrait;
+use \themes\clipone\views\formTrait;
 use \themes\clipone\viewTrait;
 use \packages\base\translator;
 
-class comment extends newscomment{
-	use viewTrait,listTrait;
+class edit extends newEdit{
+	use viewTrait,formTrait;
 	function __beforeLoad(){
 		$this->setTitle(array(
 			translator::trans('news'),
-			translator::trans('list'),
-			translator::trans('news.unpublished')
+			translator::trans('edit'),
+			"#".$this->getNew()->id
 		));
-		navigation::active("news/comments");
-		$this->setButtons();
+		navigation::active("news");
+		$this->addAssets();
+	}
+	protected function addAssets(){
+		$this->addCSSFile(theme::url('assets/css/pages/news.edit.css'));
+		$this->addJSFile(theme::url('assets/plugins/autosize/jquery.autosize.min.js'));
+		$this->addJSFile(theme::url('assets/plugins/ckeditor/ckeditor.js'));
+		$this->addJSFile(theme::url('assets/js/pages/new.edit.js'));
 	}
 	public static function onSourceLoad(){
 		parent::onSourceLoad();
@@ -42,22 +49,5 @@ class comment extends newscomment{
 			$item->addItem($index);
 			navigation::addItem($item);
 		}
-	}
-	public function setButtons(){
-		$this->setButton('news_view', $this->canView, array(
-			'title' => translator::trans('view'),
-			'icon' => 'fa fa-files-o',
-			'classes' => array('btn', 'btn-xs', 'btn-green')
-		));
-		$this->setButton('news_edit', $this->canEdit, array(
-			'title' => translator::trans('edit'),
-			'icon' => 'fa fa-edit',
-			'classes' => array('btn', 'btn-xs', 'btn-warning')
-		));
-		$this->setButton('news_delete', $this->canDel, array(
-			'title' => translator::trans('news.delete'),
-			'icon' => 'fa fa-times',
-			'classes' => array('btn', 'btn-xs', 'btn-bricky')
-		));
 	}
 }

@@ -1,0 +1,22 @@
+form .cke_reset_all,
+form .cke_reset_all * {
+	font: normal normal normal 12px Tahoma,Arial,Helvetica,Verdana,Sans-Serif;
+}
+.btn-file2{
+    position: relative;
+    overflow: hidden;
+    background: #569099 !important;
+	border-color: #4d8189 !important;
+	color: #ffffff !important;
+    cursor: pointer;
+}
+.btn-file2 input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    outline: none;
+    cursor: pointer !important;
+}

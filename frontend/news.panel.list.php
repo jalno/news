@@ -18,7 +18,7 @@ $this->the_header();
 		<!-- start: BASIC TABLE PANEL -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-envelope"></i> <?php echo translator::trans('news.published'); ?>
+				<i class="fa fa-envelope"></i> <?php echo translator::trans('news'); ?>
 				<div class="panel-tools">
 					<a class="btn btn-xs btn-link tooltips" title="<?php echo translator::trans('news.add'); ?>" href="<?php echo userpanel\url('news/new'); ?>"><i class="fa fa-plus"></i></a>
 					<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
@@ -34,11 +34,11 @@ $this->the_header();
 							<tr>
 								<th class="center">#</th>
 								<th><?php echo translator::trans('news.title'); ?></th>
-								<th><?php echo translator::trans('news.data'); ?></th>
-								<th style="width: 37%;"><?php echo translator::trans('news.description'); ?></th>
+								<th><?php echo translator::trans('news.date'); ?></th>
 								<th><?php echo translator::trans('news.author'); ?></th>
 								<th><?php echo translator::trans('news.view'); ?></th>
-								<th><?php echo translator::trans('news.comments') ?></th>
+								<th><?php echo translator::trans('news.comments'); ?></th>
+								<th><?php echo translator::trans('news.status'); ?></th>
 								<?php if($hasButtons){ ?><th></th><?php } ?>
 							</tr>
 						</thead>
@@ -48,22 +48,28 @@ $this->the_header();
 								$this->setButtonParam('news_view', 'link', userpanel\url("news/view/".$row->id));
 								$this->setButtonParam('news_edit', 'link', userpanel\url("news/edit/".$row->id));
 								$this->setButtonParam('news_delete', 'link', userpanel\url("news/delete/".$row->id));
+								$statusClass = utility::switchcase($row->status, array(
+									'label label-success' => newpost::published,
+									'label label-warning' => newpost::unpublished
+								));
+								$statusTxt = utility::switchcase($row->status, array(
+									'new.published' => newpost::published,
+									'new.unpublished' => newpost::unpublished
+								));
+								$comment = '#';
+								if(count($row->comments) > 0){
+									$comment = userpanel\url("news/comments/".$row->id);
+								}
 							?>
 							<tr>
 								<td class="center"><?php echo $row->id; ?></td>
 								<td><?php echo $row->title; ?></td>
 								<td><?php echo date::format('Y/m/d H:i', $row->date); ?></td>
-								<td><?php echo $row->description; ?></td>
 								<td><a href="<?php echo userpanel\url('users/view/'.$row->author->id); ?>"><?php echo $row->author->name." ".$row->author->lastname; ?></a></td>
 								<td><?php echo $row->view; ?></td>
-								<?php if(count($row->comments) > 0){ ?>
-								<td><a href="<?php echo userpanel\url("news/comments/".$row->id); ?>"><?php echo count($row->comments); ?></a></td>
+								<td><a class="badge" href="<?php echo $comment  ?>"><?php echo count($row->comments); ?></a></td>
+								<td class="hidden-xs"><span class="<?php echo $statusClass; ?>"><?php echo translator::trans($statusTxt); ?></span></td>
 								<?php
-								}else{
-								?>
-								<td><?php echo count($row->comments); ?></td>
-								<?php
-								}
 								if($hasButtons){
 									echo("<td class=\"center\">".$this->genButtons()."</td>");
 								}

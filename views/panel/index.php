@@ -2,7 +2,7 @@
 namespace packages\news\views\panel;
 use \packages\news\view;
 use \packages\news\authorization;
-class published extends view{
+class index extends view{
 	protected $canAdd;
 	protected $canView;
 	protected $canEdit;
