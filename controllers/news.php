@@ -52,9 +52,6 @@ class news extends controller{
 					'email' => array(
 						'type' => 'email',
 					),
-					'subject' => array(
-						'type' => 'string'
-					),
 					'text' => array(
 						'type' => 'string'
 					)
