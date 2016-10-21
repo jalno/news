@@ -19,7 +19,7 @@ $this->the_header();
 		<!-- start: BASIC TABLE PANEL -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-envelope"></i> <?php echo translator::trans('comments.unpublished'); ?>
+				<i class="fa fa-envelope"></i> نظر ها
 				<div class="panel-tools">
 					<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 				</div>

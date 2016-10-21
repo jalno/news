@@ -6,6 +6,7 @@ use \packages\base\translator;
 use \packages\base\options;
 use \packages\base\packages;
 use \packages\userpanel;
+use \packages\userpanel\user;
 use \themes\clipone\navigation;
 use \themes\clipone\navigation\menuItem;
 use \themes\clipone\views\formTrait;
