@@ -18,7 +18,7 @@ $this->the_header();
                 <i class="fa fa-edit"></i>
                 <span><?php echo translator::trans("edit").' '.translator::trans("new").' #'.$this->getNew()->id; ?></span>
 				<div class="panel-tools">
-					<a class="btn btn-xs btn-link tooltips" title="<?php echo translator::trans('add'); ?>" href="#product-add" data-toggle="modal" data-original-title=""><i class="fa fa-plus"></i></a>
+					<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 				</div>
             </div>
             <div class="panel-body">

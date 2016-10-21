@@ -67,10 +67,6 @@ class news extends controller{
 					$this->response->setStatus(true);
 				}catch(inputValidation $error){
 					$view->setFormError(FormError::fromException($error));
-				}catch(InputDataType $error){
-					$view->setFormError(FormError::fromException($error));
-				}catch(duplicateRecord $error){
-					$view->setFormError(FormError::fromException($error));
 				}
 				$view->setDataForm($this->inputsvalue($inputsRules));
 
