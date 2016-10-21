@@ -1,6 +1,5 @@
 <?php
 namespace themes\clipone\views\news\panel;
-use \packages\news\views\panel\commentDelete as delete;
 use \packages\base\frontend\theme;
 use \packages\userpanel;
 use \themes\clipone\navigation;
@@ -9,7 +8,7 @@ use \themes\clipone\views\formTrait;
 use \themes\clipone\viewTrait;
 use \packages\base\translator;
 
-class commentDelete extends delete{
+class commentDelete extends \packages\news\views\panel\commentDelete{
 	use viewTrait,formTrait;
 	function __beforeLoad(){
 		$this->setTitle(array(
