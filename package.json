@@ -7,5 +7,11 @@
 	"sitemap": [{
 		"type":"dynamic",
 		"controller":"controllers\\sitemap@import"
-	}]
+	}],
+	"events": [
+		{
+			"name":"\\packages\\userpanel\\events\\usertype_permissions_list",
+			"listener": "listeners\\settings\\usertype@permissions_list"
+		}
+	]
 }

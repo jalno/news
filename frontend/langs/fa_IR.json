@@ -38,6 +38,13 @@
 		"upload.file":"بارگذاری فایل",
 		"attention":"توجه",
 		"new.delete.warning":"آیا از حذف خبر به شناسه #{new.id} اطمیان دارید؟ این عملیات بدون بازگشت است",
-		"comment.delete.warning":"آیا شما از حذف نظر به شناسه #{comment.id} اطمینان دارید؟ این عملیات بدون بازگشت است."
+		"comment.delete.warning":"آیا شما از حذف نظر به شناسه #{comment.id} اطمینان دارید؟ این عملیات بدون بازگشت است.",
+		"usertype.permissions.news_list" : "لیست اخبار",
+		"usertype.permissions.news_add" : "افزودن خبر‌",
+		"usertype.permissions.news_edit" : "ویرایش خبر",
+		"usertype.permissions.news_delete" : "حذف خبر",
+		"usertype.permissions.news_comments_list" : "لیست نظرات اخبار",
+		"usertype.permissions.news_comments_edit" : "ویرایش نظرات اخبار",
+		"usertype.permissions.news_comments_delete" : "حذف نظرات اخبار"
 	}
 }
