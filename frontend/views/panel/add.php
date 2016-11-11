@@ -38,7 +38,7 @@ class add extends newADD{
 		return ($newspackage->url(options::get('packages.news.defaultimage')));
 	}
 	private function setUserInput(){
-		if($error = $this->getFromErrorsByInput('author')){
+		if($error = $this->getFormErrorsByInput('author')){
 			$error->setInput('author_name');
 			$this->setFormError($error);
 		}
