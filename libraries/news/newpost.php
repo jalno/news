@@ -23,4 +23,18 @@ class newpost extends dbObject{
 		'author' => array('hasOne', 'packages\\userpanel\\user', 'author'),
 		'comments' => array('hasMany', '\\packages\\news\\comment', 'post')
 	);
+	public function breakContent(){
+		$content = array($this->content,'');
+		if(preg_match("/([\\s\\S]+)<!-+more-+>([\\s\\S]+)/im", $this->content, $matches)){
+			$content = array($matches[1], $matches[2]);
+		}
+		return $content;
+	}
+	public function firstPartContent(){
+		return $this->breakContent()[0];
+	}
+	public function secondPartContent(){
+		return $this->breakContent()[1];
+	}
+
 }
