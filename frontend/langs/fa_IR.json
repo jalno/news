@@ -45,6 +45,7 @@
 		"usertype.permissions.news_delete" : "حذف خبر",
 		"usertype.permissions.news_comments_list" : "لیست نظرات اخبار",
 		"usertype.permissions.news_comments_edit" : "ویرایش نظرات اخبار",
-		"usertype.permissions.news_comments_delete" : "حذف نظرات اخبار"
+		"usertype.permissions.news_comments_delete" : "حذف نظرات اخبار",
+		"post.readmore": "[مطالعه بیشتر]"
 	}
 }
