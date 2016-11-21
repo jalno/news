@@ -31,6 +31,20 @@ class news extends controller{
 		$this->response->setView($view);
 		return $this->response;
 	}
+	public function view($data){
+		if($view = view::byName("\\packages\\news\\views\\panel\\view")){
+
+			if($new = newpost::byId($data['id'])){
+				$new->view += 1;
+				$new->save();
+				$view->setNew($new);
+			}else{
+				throw new NotFound();
+			}
+			$this->response->setView($view);
+			return $this->response;
+		}
+	}
 	public function edit($data){
 		authorization::haveOrFail('edit');
 		$view = view::byName("\\packages\\news\\views\\panel\\edit");

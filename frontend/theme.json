@@ -47,6 +47,11 @@
 			"name":"\\themes\\clipone\\views\\news\\panel\\commentEdit",
 			"parent":"\\packages\\news\\views\\panel\\commentEdit",
 			"file":"comment.edit.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\news\\panel\\view",
+			"parent":"\\packages\\news\\views\\panel\\view",
+			"file":"new.view.php"
 		}
 	]
 }

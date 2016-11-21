@@ -107,6 +107,10 @@
 		{
 			"classes":["listeners\\settings\\usertype"],
 			"file":"listeners/settings/usertype.php"
+		},
+		{
+			"classes":["views\\panel\\view"],
+			"file":"views/panel/view.php"
 		}
 	]
 }
