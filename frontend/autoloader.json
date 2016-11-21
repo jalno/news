@@ -44,6 +44,10 @@
 			"file":"views/panel/comment.edit.php"
 		},
 		{
+			"classes":["listeners\\news\\dashboard"],
+			"file":"listeners/clipone/dashboard.php"
+		},
+		{
 			"classes":["views\\news\\panel\\view"],
 			"file":"views/panel/view.php"
 		}
