@@ -5,12 +5,14 @@ use \packages\base\http;
 use \packages\base\NotFound;
 use \packages\base\inputValidation;
 use \packages\base\views\FormError;
+use \packages\base\NoViewException;
 
 use \packages\news\controller;
 use \packages\news\view;
 use \packages\news\newpost;
 use \packages\news\comment;
 
+use \packages\userpanel;
 use \packages\userpanel\date;
 
 class news extends controller{
@@ -27,57 +29,61 @@ class news extends controller{
 		}
 	}
 	public function view($data){
-		if($view = view::byName("\\packages\\news\\views\\news\\view")){
-
-			if($new = newpost::byId($data['id'])){
-				$new->view += 1;
-				$new->save();
-				$view->setNew($new);
-				$view->setData($new->comments, 'comments');
-			}else{
-				throw new NotFound();
-			}
-
-			$this->response->setStatus(false);
-			if(http::is_post()){
-				$inputsRules = array(
-					'reply' => array(
-						'type' => 'number',
-						'optional' => true,
-						'empty' => true
-					),
-					'name' => array(
-						'type' => 'string'
-					),
-					'email' => array(
-						'type' => 'email',
-					),
-					'text' => array(
-						'type' => 'string'
-					)
-				);
-				try{
-					$inputs = $this->checkinputs($inputsRules);
-					$comment = new comment($inputs);
-					$comment->post = $data['id'];
-					if(isset($inputs['reply'])){
-						$comment->reply = $inputs['reply'];
-					}
-					$comment->save();
-					$this->response->setStatus(true);
-				}catch(inputValidation $error){
-					$view->setFormError(FormError::fromException($error));
-				}
-				$view->setDataForm($this->inputsvalue($inputsRules));
-
-			}else{
-				$this->response->setStatus(true);
-
-
-			}
-			$this->response->setView($view);
+		try{
+			$view = view::byName("\\packages\\news\\views\\news\\view");
+		}catch(NoViewException $e){
+			$this->response->Go(userpanel\url('news/view/'.$data['id']));
 			return $this->response;
 		}
+
+		if($new = newpost::byId($data['id'])){
+			$new->view += 1;
+			$new->save();
+			$view->setNew($new);
+			$view->setData($new->comments, 'comments');
+		}else{
+			throw new NotFound();
+		}
+
+		$this->response->setStatus(false);
+		if(http::is_post()){
+			$inputsRules = array(
+				'reply' => array(
+					'type' => 'number',
+					'optional' => true,
+					'empty' => true
+				),
+				'name' => array(
+					'type' => 'string'
+				),
+				'email' => array(
+					'type' => 'email',
+				),
+				'text' => array(
+					'type' => 'string'
+				)
+			);
+			try{
+				$inputs = $this->checkinputs($inputsRules);
+				$comment = new comment($inputs);
+				$comment->post = $data['id'];
+				if(isset($inputs['reply'])){
+					$comment->reply = $inputs['reply'];
+				}
+				$comment->save();
+				$this->response->setStatus(true);
+			}catch(inputValidation $error){
+				$view->setFormError(FormError::fromException($error));
+			}
+			$view->setDataForm($this->inputsvalue($inputsRules));
+
+		}else{
+			$this->response->setStatus(true);
+
+
+		}
+		$this->response->setView($view);
+		return $this->response;
 	}
 	public function archive($data){
 		if($view = view::byName("\\packages\\news\\views\\news\\archive")){
