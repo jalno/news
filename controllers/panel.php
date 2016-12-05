@@ -22,6 +22,13 @@ use \packages\news\authorization;
 
 class news extends controller{
 	protected $authentication = true;
+	private function getNew($id){
+		$new = newpost::byId($id);
+		if(!$new){
+			throw new NotFound;
+		}
+		return $new;
+	}
 	public function index(){
 		authorization::haveOrFail('list');
 		$view = view::byName("\\packages\\news\\views\\panel\\index");
@@ -33,14 +40,10 @@ class news extends controller{
 	}
 	public function view($data){
 		if($view = view::byName("\\packages\\news\\views\\panel\\view")){
-
-			if($new = newpost::byId($data['id'])){
-				$new->view += 1;
-				$new->save();
-				$view->setNew($new);
-			}else{
-				throw new NotFound();
-			}
+			$new = $this->getNew($data['id']);
+			$new->view += 1;
+			$new->save();
+			$view->setNew($new);
 			$this->response->setView($view);
 			return $this->response;
 		}
@@ -48,9 +51,7 @@ class news extends controller{
 	public function edit($data){
 		authorization::haveOrFail('edit');
 		$view = view::byName("\\packages\\news\\views\\panel\\edit");
-		$new = new newpost;
-		$new->where('id', $data['id']);
-		$news = $new->getOne();
+		$news = $this->getNew($data['id']);
 		$view->setNew($news);
 		$inputsRules = array(
 			'title' => array(
@@ -150,7 +151,7 @@ class news extends controller{
 	public function delete($data){
 		authorization::haveOrFail('delete');
 		$view = view::byName("\\packages\\news\\views\\panel\\delete");
-		$new = newpost::byId($data['id']);
+		$new = $this->getNew($data['id']);
 		$view->setNew($new);
 		$this->response->setStatus(false);
 		if(http::is_post()){
