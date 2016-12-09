@@ -1,8 +1,8 @@
 <?php
 namespace packages\news\views\panel;
-use \packages\news\view;
+use \packages\userpanel\views\listview as list_view;
 use \packages\news\authorization;
-class index extends view{
+class index extends list_view{
 	protected $canAdd;
 	protected $canEdit;
 	protected $canDel;

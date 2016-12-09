@@ -1,21 +1,14 @@
 <?php
 use \packages\base;
 use \packages\base\translator;
-
 use \packages\userpanel;
-use \packages\userpanel\user;
 use \packages\userpanel\date;
-
 use \themes\clipone\utility;
-
 use \packages\news\newpost;
-
-
 $this->the_header();
 ?>
 <div class="row">
 	<div class="col-md-12">
-		<!-- start: BASIC TABLE PANEL -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<i class="fa fa-envelope"></i> <?php echo translator::trans('news'); ?>
@@ -82,6 +75,7 @@ $this->the_header();
 						</tbody>
 					</table>
 				</div>
+				<?php $this->paginator(); ?>
 			</div>
 		</div>
 		<!-- end: BASIC TABLE PANEL -->

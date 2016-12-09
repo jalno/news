@@ -34,7 +34,10 @@ class news extends controller{
 		$view = view::byName("\\packages\\news\\views\\panel\\index");
 		$new = new newpost();
 		$new->orderBy('date', 'DESC');
-		$view->setNews($new->get());
+		$new->pageLimit = $this->items_per_page;
+		$view->setNews($new->paginate($this->page));
+		$this->total_pages = $new->totalPages;
+		$view->setPaginate($this->page, $new->totalCount, $this->items_per_page);
 		$this->response->setView($view);
 		return $this->response;
 	}
