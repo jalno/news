@@ -36,5 +36,9 @@ class newpost extends dbObject{
 	public function secondPartContent(){
 		return $this->breakContent()[1];
 	}
-
+	public function getCountPostCommnets(){
+		db::where("post", $this->id);
+		db::where("status", comment::accepted);
+		return db::getValue("news_comments", "count(*)");
+	}
 }
