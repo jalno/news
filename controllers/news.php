@@ -6,23 +6,22 @@ use \packages\base\NotFound;
 use \packages\base\inputValidation;
 use \packages\base\views\FormError;
 use \packages\base\NoViewException;
-
 use \packages\news\controller;
 use \packages\news\view;
 use \packages\news\newpost;
 use \packages\news\comment;
-
 use \packages\userpanel;
 use \packages\userpanel\date;
-
 class news extends controller{
 	public function index(){
 		if($view = view::byName("\\packages\\news\\views\\news\\index")){
 			$new = new newpost();
-			$new->orderBy('date', 'DESC');
+			$new->orderBy('id', 'DESC');
 			$new->where('status', newpost::published);
-			$news = $new->get();
-
+			$new->pageLimit = $this->items_per_page;
+			$news = $new->paginate($this->page);
+			$view->setDataList($news);
+			$view->setPaginate($this->page, base\db::totalCount(), $this->items_per_page);
 			$view->setNews($news);
 			$this->response->setView($view);
 			return $this->response;
