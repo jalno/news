@@ -5,18 +5,16 @@ use \packages\base\http;
 use \packages\base\NotFound;
 use \packages\base\inputValidation;
 use \packages\base\views\FormError;
-use \packages\base\NoViewException;
 use \packages\news\controller;
 use \packages\news\view;
 use \packages\news\newpost;
 use \packages\news\comment;
-use \packages\userpanel;
 use \packages\userpanel\date;
 class news extends controller{
 	public function index(){
 		if($view = view::byName("\\packages\\news\\views\\news\\index")){
 			$new = new newpost();
-			$new->orderBy('id', 'DESC');
+			$new->orderBy('date', 'DESC');
 			$new->where('status', newpost::published);
 			$new->pageLimit = $this->items_per_page;
 			$news = $new->paginate($this->page);
@@ -28,40 +26,32 @@ class news extends controller{
 		}
 	}
 	public function view($data){
-		try{
-			$view = view::byName("\\packages\\news\\views\\news\\view");
-		}catch(NoViewException $e){
-			$this->response->Go(userpanel\url('news/view/'.$data['id']));
-			return $this->response;
-		}
-
-		if($new = newpost::byId($data['id'])){
-			$new->view += 1;
-			$new->save();
-			$view->setNew($new);
-			$view->setData($new->comments, 'comments');
-		}else{
+		if(!$new = newpost::byId($data['id'])){
 			throw new NotFound();
 		}
-
-		$this->response->setStatus(false);
+		$view = view::byName("\\packages\\news\\views\\news\\view");
+		$new->view += 1;
+		$new->save();
+		$view->setNew($new);
+		$view->setData($new->comments, 'comments');
 		if(http::is_post()){
-			$inputsRules = array(
-				'reply' => array(
+			$this->response->setStatus(false);
+			$inputsRules = [
+				'reply' => [
 					'type' => 'number',
 					'optional' => true,
 					'empty' => true
-				),
-				'name' => array(
+				],
+				'name' => [
 					'type' => 'string'
-				),
-				'email' => array(
+				],
+				'email' => [
 					'type' => 'email',
-				),
-				'text' => array(
+				],
+				'text' => [
 					'type' => 'string'
-				)
-			);
+				]
+			];
 			try{
 				$inputs = $this->checkinputs($inputsRules);
 				$comment = new comment($inputs);
@@ -75,41 +65,45 @@ class news extends controller{
 				$view->setFormError(FormError::fromException($error));
 			}
 			$view->setDataForm($this->inputsvalue($inputsRules));
-
 		}else{
 			$this->response->setStatus(true);
-
-
 		}
 		$this->response->setView($view);
 		return $this->response;
 	}
 	public function archive($data){
-		if($view = view::byName("\\packages\\news\\views\\news\\archive")){
-
-			$first = date::mktime(0, 0, 0, $data['month'], 1,$data['year']);
-			$last = date::mktime(0, 0, 0, $data['month'], 30,$data['year']);
-
-			if($newpost = newpost::where('date', $first, '>')->where('date', $last, '<')){
-				$newpost->orderBy('date', 'DESC');
-				$view->setNews($newpost->get());
-			}else{
-				throw new NotFound();
-			}
-
-			$this->response->setView($view);
-			return $this->response;
+		$first = date::mktime(0, 0, 0, $data['month'], 1, $data['year']);
+		$last = date::mktime(0, 0, 0, $data['month'], 30, $data['year']);
+		$new = new newpost();
+		$new->orderBy('date', 'DESC');
+		$new->where('date', $first, '>');
+		$new->where('date', $last, '<');
+		$new->where('status', newpost::published);
+		$new->pageLimit = $this->items_per_page;
+		if(!$news = $new->paginate($this->page)){
+			throw new NotFound();
 		}
+		$view = view::byName("\\packages\\news\\views\\news\\archive");
+		$view->setNews($news);
+		$view->setPaginate($this->page, base\db::totalCount(), $this->items_per_page);
+		$this->response->setStatus(true);
+		$this->response->setView($view);
+		return $this->response;
 	}
 	public function author($data){
-		if($view = view::byName("\\packages\\news\\views\\news\\author")){
-			if($newpost = newpost::where('author', $data['id'])){
-				$newpost->orderBy('date', 'DESC');
-				$view->setNews($newpost->get());
-			}
-
-			$this->response->setView($view);
-			return $this->response;
+		$new = new newpost();
+		$new->where('author', $data['id']);
+		$new->orderBy('date', 'DESC');
+		$new->where('status', newpost::published);
+		$new->pageLimit = $this->items_per_page;
+		if(!$news = $new->paginate($this->page)){
+			throw new NotFound();
 		}
+		$view = view::byName("\\packages\\news\\views\\news\\author");
+		$view->setNews($news);
+		$view->setPaginate($this->page, base\db::totalCount(), $this->items_per_page);
+		$this->response->setStatus(true);
+		$this->response->setView($view);
+		return $this->response;
 	}
 }

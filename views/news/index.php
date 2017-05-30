@@ -1,14 +1,13 @@
 <?php
 namespace packages\news\views\news;
-use \packages\news\views\form;
-use \packages\host\views\listview as list_view;
+use \packages\news\views\listview as list_view;
 use \packages\base\views\traits\form as formTrait;
 class index extends list_view{
 	use formTrait;
-	public function setNews($news){
+	public function setNews(array $news){
 		$this->setData($news, 'news');
 	}
-	public function getNews(){
+	public function getNews():array{
 		return $this->getData('news');
 	}
 }
