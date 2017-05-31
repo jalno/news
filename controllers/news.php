@@ -3,6 +3,7 @@ namespace packages\news\controllers;
 use \packages\base;
 use \packages\base\http;
 use \packages\base\NotFound;
+use \packages\base\view\error;
 use \packages\base\inputValidation;
 use \packages\base\views\FormError;
 use \packages\news\controller;
@@ -30,7 +31,7 @@ class news extends controller{
 			throw new NotFound();
 		}
 		$view = view::byName("\\packages\\news\\views\\news\\view");
-		$new->view += 1;
+		$new->view++;
 		$new->save();
 		$view->setNew($new);
 		$view->setData($new->comments, 'comments');
@@ -54,10 +55,22 @@ class news extends controller{
 			];
 			try{
 				$inputs = $this->checkinputs($inputsRules);
-				$comment = new comment($inputs);
-				$comment->post = $data['id'];
 				if(isset($inputs['reply'])){
-					$comment->reply = $inputs['reply'];
+					if($inputs['reply']){
+						if(!$inputs['reply'] = comment::byId($inputs['reply'])){
+							throw new inputValidation('reply');
+						}
+					}else{
+						unset($inputs['reply']);
+					}
+				}
+				$comment = new comment();
+				$comment->post = $new->id;
+				foreach(['email', 'name', 'text'] as $item){
+					$comment->$item = $inputs[$item];
+				}
+				if(isset($inputs['reply'])){
+					$comment->reply = $inputs['reply']->id;
 				}
 				$comment->save();
 				$this->response->setStatus(true);
