@@ -7,7 +7,7 @@ use \themes\clipone\navigation\menuItem;
 use \themes\clipone\views\listTrait;
 use \themes\clipone\viewTrait;
 use \packages\base\translator;
-
+use \packages\base\view\error;
 class index extends newsIndex{
 	use viewTrait,listTrait;
 	function __beforeLoad(){
@@ -15,8 +15,26 @@ class index extends newsIndex{
 			translator::trans('list'),
 			translator::trans('news')
 		));
-		navigation::active("news");
+		navigation::active("news/index");
 		$this->setButtons();
+		if(empty($this->getNews())){
+			$this->addNotFoundError();
+		}
+	}
+	private function addNotFoundError(){
+		$error = new error();
+		$error->setType(error::NOTICE);
+		$error->setCode('news.post.notfound');
+		if($this->canAdd){
+			$error->setData([
+				[
+					'type' => 'btn-success',
+					'txt' => translator::trans('news.post.add'),
+					'link' => userpanel\url('news/add')
+				]
+			], 'btns');
+		}
+		$this->addError($error);
 	}
 	public static function onSourceLoad(){
 		parent::onSourceLoad();

@@ -6,7 +6,7 @@
 	"rtl": true,
 	"phrases":{
 		"news":"اخبار",
-		"new.add":"اضافه کردن خبر",
+		"new.add":"افزودن خبر",
 		"new":"خبر",
 		"comment":"نظر",
 		"news.panel":"پنل اخبار",
@@ -46,6 +46,8 @@
 		"usertype.permissions.news_comments_list" : "لیست نظرات اخبار",
 		"usertype.permissions.news_comments_edit" : "ویرایش نظرات اخبار",
 		"usertype.permissions.news_comments_delete" : "حذف نظرات اخبار",
-		"post.readmore": "[مطالعه بیشتر]"
+		"post.readmore": "[مطالعه بیشتر]",
+		"error.news.post.notfound": "هیچ پستی یافت نشد. به محض افزودن پست جدید آن را در اینجا مشاهده خواهید کرد.",
+		"news.post.add": "افزودن پست"
 	}
 }

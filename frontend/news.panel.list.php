@@ -9,6 +9,7 @@ $this->the_header();
 ?>
 <div class="row">
 	<div class="col-md-12">
+	<?php if(!empty($this->getNews())){ ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<i class="fa fa-envelope"></i> <?php echo translator::trans('news'); ?>
@@ -78,7 +79,7 @@ $this->the_header();
 				<?php $this->paginator(); ?>
 			</div>
 		</div>
-		<!-- end: BASIC TABLE PANEL -->
+	<?php } ?>
 	</div>
 </div>
 <?php

@@ -23,8 +23,7 @@ use \packages\news\authorization;
 class news extends controller{
 	protected $authentication = true;
 	private function getNew($id){
-		$new = newpost::byId($id);
-		if(!$new){
+		if(!$new = newpost::byId($id)){
 			throw new NotFound;
 		}
 		return $new;
@@ -33,9 +32,9 @@ class news extends controller{
 		authorization::haveOrFail('list');
 		$view = view::byName("\\packages\\news\\views\\panel\\index");
 		$new = new newpost();
-		$new->orderBy('date', 'DESC');
 		$new->pageLimit = $this->items_per_page;
-		$view->setNews($new->paginate($this->page));
+		$news = $new->paginate($this->page);
+		$view->setNews($news);
 		$this->total_pages = $new->totalPages;
 		$view->setPaginate($this->page, $new->totalCount, $this->items_per_page);
 		$this->response->setView($view);

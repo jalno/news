@@ -14,10 +14,10 @@ class index extends list_view{
 	}
 
 	public function setNews($news){
-		$this->setData($news, 'news');
+		$this->setDataList($news);
 	}
 	public function getNews(){
-		return $this->getData('news');
+		return $this->getDataList();
 	}
 
 	public static function onSourceLoad(){
