@@ -7,19 +7,15 @@ use \packages\base\NotFound;
 use \packages\base\inputValidation;
 use \packages\base\views\FormError;
 use \packages\base\packages;
-
-
 use \packages\userpanel\controller;
 use \packages\userpanel;
 use \packages\userpanel\user;
 use \packages\userpanel\date;
 use \packages\userpanel\view;
-
+use \packages\news\events;
 use \packages\news\newpost;
 use \packages\news\comment;
 use \packages\news\authorization;
-
-
 class news extends controller{
 	protected $authentication = true;
 	private function getNew($id){
@@ -164,7 +160,6 @@ class news extends controller{
 			}catch(inputValidation $error){
 				$view->setFormError(FormError::fromException($error));
 			}
-
 		}else{
 			$this->response->setStatus(true);
 		}
@@ -244,6 +239,8 @@ class news extends controller{
 				$news->title = $inputs['title'];
 				$news->description = $inputs['description'];
 				$news->save();
+				$event = new events\posts\add($news);
+				$event->trigger();
 				$this->response->setStatus(true);
 				$this->response->Go(userpanel\url('news/edit/'.$news->id));
 			}catch(inputValidation $error){

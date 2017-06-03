@@ -111,6 +111,18 @@
 		{
 			"classes":["views\\panel\\view"],
 			"file":"views/panel/view.php"
+		},
+		{
+			"classes":["listeners\\notifications"],
+			"file":"listeners/notifications.php"
+		},
+		{
+			"classes":["events\\posts\\add"],
+			"file":"libraries/events/posts/add.php"
+		},
+		{
+			"classes":["events\\comments\\add"],
+			"file":"libraries/events/comments/add.php"
 		}
 	]
 }
