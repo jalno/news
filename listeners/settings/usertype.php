@@ -8,7 +8,6 @@ class usertype{
 			'add',
 			'edit',
 			'delete',
-
 			'comments_list',
 			'comments_edit',
 			'comments_delete'
