@@ -9,6 +9,7 @@ use \packages\base\views\FormError;
 use \packages\news\controller;
 use \packages\news\view;
 use \packages\news\newpost;
+use \packages\news\events;
 use \packages\news\comment;
 use \packages\userpanel\date;
 class news extends controller{
@@ -73,6 +74,8 @@ class news extends controller{
 					$comment->reply = $inputs['reply']->id;
 				}
 				$comment->save();
+				$event = new events\comments\add($comment);
+				$event->trigger();
 				$this->response->setStatus(true);
 			}catch(inputValidation $error){
 				$view->setFormError(FormError::fromException($error));
