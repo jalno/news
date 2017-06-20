@@ -22,7 +22,7 @@ class add extends newADD{
 			translator::trans('news'),
 			translator::trans('add')
 		));
-		navigation::active("news/add");
+		navigation::active("news/addnew");
 		$this->addAssets();
 		$this->setUserInput();
 	}

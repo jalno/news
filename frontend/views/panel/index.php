@@ -41,14 +41,17 @@ class index extends newsIndex{
 		if(parent::$navigation){
 			$addnew = new menuItem("addnew");
 			$addnew->setTitle(translator::trans('new.add'));
+			$addnew->setIcon('fa fa-plus');
 			$addnew->setURL(userpanel\url('news/add'));
 
 			$comments = new menuItem("comments");
 			$comments->setTitle(translator::trans('news.comments'));
+			$comments->setIcon('fa fa-comments-o');
 			$comments->setURL(userpanel\url('news/comments'));
 
 			$index = new menuItem("index");
 			$index->setTitle(translator::trans('news'));
+			$index->setIcon('fa fa-newspaper-o');
 			$index->setURL(userpanel\url('news'));
 
 			$item = new menuItem("news");
