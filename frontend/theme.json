@@ -11,6 +11,14 @@
 		"fa_IR" : "langs/fa_IR.json"
 	},
 	"assets":[
+		{"type":"package", "name":"jquery"},
+		{"type":"package", "name":"jquery-ui"},
+		{"type":"package", "name":"bootstrap"},
+		{"type":"package", "name":"webuilder"},
+		{"type":"package", "name":"jquery-inputlimiter"},
+		{"type":"package", "name":"jquery.growl"},
+		{"type":"package", "name":"bootstrap-inputmsg"},
+		{"type":"ts", "file":"assets/ts/Main.ts"}
 	],
 	"events": [
 		{
@@ -22,7 +30,7 @@
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\index",
 			"parent":"\\packages\\news\\views\\panel\\index",
-			"file":"news.panel.list.php"
+			"file":"html/post/list.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\comment",
@@ -53,11 +61,6 @@
 			"name":"\\themes\\clipone\\views\\news\\panel\\commentEdit",
 			"parent":"\\packages\\news\\views\\panel\\commentEdit",
 			"file":"comment.edit.php"
-		},
-		{
-			"name":"\\themes\\clipone\\views\\news\\panel\\view",
-			"parent":"\\packages\\news\\views\\panel\\view",
-			"file":"new.view.php"
 		}
 	]
 }

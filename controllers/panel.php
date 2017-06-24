@@ -1,9 +1,9 @@
 <?php
 namespace packages\news\controllers\panel;
-use \packages\base;
+use \packages\base\db;
 use \packages\base\http;
-use \packages\base\frontend\theme;
 use \packages\base\NotFound;
+use \packages\base\db\parenthesis;
 use \packages\base\inputValidation;
 use \packages\base\views\FormError;
 use \packages\base\packages;
@@ -27,24 +27,70 @@ class news extends controller{
 	public function index(){
 		authorization::haveOrFail('list');
 		$view = view::byName("\\packages\\news\\views\\panel\\index");
-		$new = new newpost();
-		$new->pageLimit = $this->items_per_page;
-		$news = $new->paginate($this->page);
-		$view->setNews($news);
-		$this->total_pages = $new->totalPages;
-		$view->setPaginate($this->page, $new->totalCount, $this->items_per_page);
+		$post = new newpost();
+		$inputsRules = [
+			'id' => [
+				'type' => 'number',
+				'empty' => true,
+				'optional' => true
+			],
+			'author' => [
+				'type' => 'number',
+				'empty' => true,
+				'optional' => true
+			],
+			'title' => [
+				'type' => 'string',
+				'empty' => true,
+				'optional' => true
+			],
+			'word' => [
+				'type' => 'string',
+				'optional' => true,
+				'empty' => true
+			],
+			'comparison' => [
+				'values' => array('equals', 'startswith', 'contains'),
+				'default' => 'contains',
+				'optional' => true
+			]
+		];
+		try{
+			$inputs = $this->checkinputs($inputsRules);
+			if(isset($inputs['author']) and $inputs['author']){
+				if(!user::byId($inputs['author'])){
+					throw new inputValidation('authro');
+				}
+			}
+			foreach(array('id', 'author', 'title', 'status') as $item){
+				if(isset($inputs[$item]) and $inputs[$item]){
+					$comparison = $inputs['comparison'];
+					if(in_array($item, array('id', 'status'))){
+						$comparison = 'equals';
+					}
+					$post->where("news_posts.".$item, $inputs[$item], $comparison);
+				}
+			}
+			if(isset($inputs['word']) and $inputs['word']){
+				$parenthesis = new parenthesis();
+				foreach(array('title', 'description', 'content') as $item){
+					if(!isset($inputs[$item]) or !$inputs[$item]){
+						$parenthesis->where("news_posts.".$item, $inputs['word'], $inputs['comparison'], 'OR');
+					}
+				}
+				$post->where($parenthesis);
+			}
+			$post->pageLimit = $this->items_per_page;
+			$posts = $post->paginate($this->page);
+			$view->setPaginate($this->page, $post->totalCount, $this->items_per_page);
+			$view->setDataList($posts);
+			$view->setPaginate($this->page, db::totalCount(), $this->items_per_page);
+		}catch(inputValidation $error){
+			$view->setFormError(FormError::fromException($error));
+			$this->response->setStatus(false);
+		}
 		$this->response->setView($view);
 		return $this->response;
-	}
-	public function view($data){
-		if($view = view::byName("\\packages\\news\\views\\panel\\view")){
-			$new = $this->getNew($data['id']);
-			$new->view += 1;
-			$new->save();
-			$view->setNew($new);
-			$this->response->setView($view);
-			return $this->response;
-		}
 	}
 	public function edit($data){
 		authorization::haveOrFail('edit');

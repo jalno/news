@@ -109,10 +109,6 @@
 			"file":"listeners/settings/usertype.php"
 		},
 		{
-			"classes":["views\\panel\\view"],
-			"file":"views/panel/view.php"
-		},
-		{
 			"classes":["listeners\\notifications"],
 			"file":"listeners/notifications.php"
 		},
