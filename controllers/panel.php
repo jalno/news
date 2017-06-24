@@ -13,13 +13,14 @@ use \packages\userpanel\user;
 use \packages\userpanel\date;
 use \packages\userpanel\view;
 use \packages\news\events;
-use \packages\news\newpost;
+use \packages\news\newpost as post;
 use \packages\news\comment;
+use \packages\news\file;
 use \packages\news\authorization;
 class news extends controller{
 	protected $authentication = true;
 	private function getNew($id){
-		if(!$new = newpost::byId($id)){
+		if(!$new = post::byId($id)){
 			throw new NotFound;
 		}
 		return $new;
@@ -27,7 +28,7 @@ class news extends controller{
 	public function index(){
 		authorization::haveOrFail('list');
 		$view = view::byName("\\packages\\news\\views\\panel\\index");
-		$post = new newpost();
+		$post = new post();
 		$inputsRules = [
 			'id' => [
 				'type' => 'number',
@@ -50,7 +51,7 @@ class news extends controller{
 				'empty' => true
 			],
 			'comparison' => [
-				'values' => array('equals', 'startswith', 'contains'),
+				'values' => ['equals', 'startswith', 'contains'],
 				'default' => 'contains',
 				'optional' => true
 			]
@@ -62,10 +63,10 @@ class news extends controller{
 					throw new inputValidation('authro');
 				}
 			}
-			foreach(array('id', 'author', 'title', 'status') as $item){
+			foreach(['id', 'author', 'title', 'status'] as $item){
 				if(isset($inputs[$item]) and $inputs[$item]){
 					$comparison = $inputs['comparison'];
-					if(in_array($item, array('id', 'status'))){
+					if(in_array($item, ['id', 'status'])){
 						$comparison = 'equals';
 					}
 					$post->where("news_posts.".$item, $inputs[$item], $comparison);
@@ -73,7 +74,7 @@ class news extends controller{
 			}
 			if(isset($inputs['word']) and $inputs['word']){
 				$parenthesis = new parenthesis();
-				foreach(array('title', 'description', 'content') as $item){
+				foreach(['title', 'description', 'content'] as $item){
 					if(!isset($inputs[$item]) or !$inputs[$item]){
 						$parenthesis->where("news_posts.".$item, $inputs['word'], $inputs['comparison'], 'OR');
 					}
@@ -95,93 +96,108 @@ class news extends controller{
 	public function edit($data){
 		authorization::haveOrFail('edit');
 		$view = view::byName("\\packages\\news\\views\\panel\\edit");
-		$news = $this->getNew($data['id']);
-		$view->setNew($news);
-		$inputsRules = array(
-			'title' => array(
+		$post = $this->getNew($data['id']);
+		$view->setNew($post);
+		$inputsRules = [
+			'title' => [
 				'type' => 'string',
 				'optional' => true
-			),
-			'author' => array(
+			],
+			'author' => [
 				'type' => 'number',
 				'optional' => true
-			),
-			'description' => array(
+			],
+			'description' => [
 				'type' => 'string',
 				'optional' => true
-			),
-			'date' => array(
+			],
+			'date' => [
 				'type' => 'date',
 				'optional' => true
-			),
-			'status' => array(
+			],
+			'status' => [
 				'type' => 'number',
 				'optional' => true,
-				'values' => array(newpost::published, newpost::unpublished)
-			),
-			'image' => array(
+				'values' => [post::published, post::unpublished]
+			],
+			'image' => [
 				'type' => 'file',
 				'optional' => true,
 				'empty' => true
-			),
-			'text' => array(
+			],
+			'text' => [
 				'optional' => true
-			)
-		);
+			],
+			'attachment' => [
+				'optional' => true
+			]
+		];
 		$this->response->setStatus(false);
 		if(http::is_post()){
 			try{
 				$inputs = $this->checkinputs($inputsRules);
-				$inputs['author'] = user::byId($inputs['author']);
-				$inputs['date'] = date::strtotime($inputs['date']);
-				if(!$inputs['author']){
-					throw new inputValidation("author");
+				if(isset($inputs['author'])){
+					$inputs['author'] = user::byId($inputs['author']);
+					if(!$inputs['author']){
+						throw new inputValidation("author");
+					}
 				}
-				if($inputs['date'] <= 0){
-					throw new inputValidation("date");
+				if(isset($inputs['date'])){
+					$inputs['date'] = date::strtotime($inputs['date']);
+					if($inputs['date'] <= 0){
+						throw new inputValidation("date");
+					}
 				}
-				$news->author = $inputs['author'];
-				$news->date = $inputs['date'];
+				if(isset($inputs['attachment'])){
+					foreach($inputs['attachment'] as $key => $attachment){
+						if($file = file::byID($attachment)){
+							$inputs['attachment'][$key] = $file;
+						}else{
+							throw new inputValidation("attachment[{$key}]");
+						}
+					}
+				}
 				if(isset($inputs['image'])){
-					if($inputs['image']['error'] == 0){
-						$type = getimagesize($inputs['image']['tmp_name']);
-						if(in_array($type[2], array(IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG))){
-							$name = md5_file($inputs['image']['tmp_name']);
-							if($type[2] == IMAGETYPE_JPEG){
-								$type_name = '.jpg';
-							}elseif($type[2] == IMAGETYPE_GIF){
-								$type_name = '.gif';
-							}elseif($type[2] == IMAGETYPE_PNG){
-								$type_name = '.png';
-							}
-							$directory = __DIR__.'/../storage/'.$name.$type_name;
-							if(move_uploaded_file($inputs['image']['tmp_name'], $directory)){
-								$news->image = "storage/".$name.$type_name;
+					switch($inputs['image']['error']){
+						case(0):
+							$type = getimagesize($inputs['image']['tmp_name']);
+							if(in_array($type[2], [IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG])){
+								$name = md5_file($inputs['image']['tmp_name']);
+								if($type[2] == IMAGETYPE_JPEG){
+									$type_name = '.jpg';
+								}elseif($type[2] == IMAGETYPE_GIF){
+									$type_name = '.gif';
+								}elseif($type[2] == IMAGETYPE_PNG){
+									$type_name = '.png';
+								}
+								$directory = __DIR__.'/../storage/'.$name.$type_name;
+								if(move_uploaded_file($inputs['image']['tmp_name'], $directory)){
+									$inputs['image'] = "storage/".$name.$type_name;
+								}else{
+									throw new inputValidation("image");
+								}
 							}else{
 								throw new inputValidation("image");
 							}
-						}else{
+							break;
+						case(4):
+							unset($inputs['image']);
+							break;
+						default:
 							throw new inputValidation("image");
-						}
-					}elseif($inputs['image']['error'] != 4){
-						throw new inputValidation("image");
+							break;
 					}
 				}
-				if(isset($inputs['status'])){
-					$news->status = $inputs['status'];
+				foreach(['author', 'date', 'image', 'status', 'content', 'title', 'description'] as $key){
+					if(isset($inputs[$key])){
+						$post->$key = $inputs[$key];
+					}
 				}
-				if(isset($inputs['text'])){
-					$news->content = $inputs['text'];
+				$post->save();
+				if(isset($inputs['attachment'])){
+					$post->setAttachments($inputs['attachment']);
 				}
-				if(isset($inputs['title'])){
-					$news->title = $inputs['title'];
-				}
-				if(isset($inputs['description'])){
-					$news->description = $inputs['description'];
-				}
-				$news->save();
 				$this->response->setStatus(true);
-				$this->response->Go(userpanel\url('news/edit/'.$news->id));
 			}catch(inputValidation $error){
 				$view->setFormError(FormError::fromException($error));
 			}
@@ -215,31 +231,33 @@ class news extends controller{
 	public function add(){
 		authorization::haveOrFail('add');
 		$view = view::byName("\\packages\\news\\views\\panel\\add");
-		$inputsRules = array(
-			'title' => array(
+		$inputsRules = [
+			'title' => [
 				'type' => 'string'
-			),
-			'author' => array(
+			],
+			'author' => [
 				'type' => 'number'
-			),
-			'description' => array(
+			],
+			'description' => [
 				'type' => 'string'
-			),
-			'date' => array(
+			],
+			'date' => [
 				'type' => 'date'
-			),
-			'status' => array(
+			],
+			'status' => [
 				'type' => 'number',
-				'values' => array(newpost::published, newpost::unpublished)
-			),
-			'image' => array(
+				'values' => [post::published, post::unpublished]
+			],
+			'image' => [
 				'type' => 'file',
 				'optional' => true,
 				'empty' => true
-			),
-			'text' => array()
-		);
-
+			],
+			'content' => [],
+			'attachment' => [
+				'optional' => true
+			]
+		];
 		$this->response->setStatus(false);
 		if(http::is_post()){
 			try{
@@ -252,13 +270,19 @@ class news extends controller{
 				if($inputs['date'] <= 0){
 					throw new inputValidation("date");
 				}
-				$news = new newpost;
-				$news->author = $inputs['author'];
-				$news->date = $inputs['date'];
+				if(isset($inputs['attachment'])){
+					foreach($inputs['attachment'] as $key => $attachment){
+						if($file = file::byID($attachment)){
+							$inputs['attachment'][$key] = $file;
+						}else{
+							throw new inputValidation("attachment[{$key}]");
+						}
+					}
+				}
 				if(isset($inputs['image'])){
 					if($inputs['image']['error'] == 0){
 						$type = getimagesize($inputs['image']['tmp_name']);
-						if(in_array($type[2], array(IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG))){
+						if(in_array($type[2], [IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG])){
 							$name = md5_file($inputs['image']['tmp_name']);
 							if($type[2] == IMAGETYPE_JPEG){
 								$type_name = '.jpg';
@@ -269,7 +293,7 @@ class news extends controller{
 							}
 							$directory = __DIR__.'/../storage/'.$name.$type_name;
 							if(move_uploaded_file($inputs['image']['tmp_name'], $directory)){
-								$news->image = "storage/".$name.$type_name;
+								$inputs['image'] = "storage/".$name.$type_name;
 							}else{
 								throw new inputValidation("image");
 							}
@@ -280,15 +304,23 @@ class news extends controller{
 						throw new inputValidation("image");
 					}
 				}
-				$news->status = $inputs['status'];
-				$news->content = $inputs['text'];
-				$news->title = $inputs['title'];
-				$news->description = $inputs['description'];
-				$news->save();
-				$event = new events\posts\add($news);
+				$post = new post;
+				foreach(['author', 'date', 'image', 'content', 'status', 'title', 'description'] as $item){
+					if(isset($inputs[$item])){
+						$post->$item = $inputs[$item];
+					}
+				}
+				$post->save();
+				if(isset($inputs['attachment'])){
+					foreach($inputs['attachment'] as $file){
+						$file->post = $post->id;
+						$file->save();
+					}
+				}
+				$event = new events\posts\add($post);
 				$event->trigger();
 				$this->response->setStatus(true);
-				$this->response->Go(userpanel\url('news/edit/'.$news->id));
+				$this->response->Go(userpanel\url('news/edit/'.$post->id));
 			}catch(inputValidation $error){
 				$view->setFormError(FormError::fromException($error));
 			}
@@ -296,7 +328,6 @@ class news extends controller{
 		}else{
 			$this->response->setStatus(true);
 		}
-
 		$this->response->setView($view);
 		return $this->response;
 	}

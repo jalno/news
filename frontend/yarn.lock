@@ -30,6 +30,12 @@
   dependencies:
     "@types/jquery" "*"
 
+bootstrap-avatar-preview@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-avatar-preview/-/bootstrap-avatar-preview-1.0.0.tgz#3050b7473e9e4db9ced02685fc4964904d211146"
+  dependencies:
+    jquery "^3.2.1"
+
 bootstrap-inputmsg@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/bootstrap-inputmsg/-/bootstrap-inputmsg-1.0.0.tgz#7c3dfe0badf5d1504afcd439d6100aa1e42cdfe0"

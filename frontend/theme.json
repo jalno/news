@@ -18,6 +18,9 @@
 		{"type":"package", "name":"jquery-inputlimiter"},
 		{"type":"package", "name":"jquery.growl"},
 		{"type":"package", "name":"bootstrap-inputmsg"},
+		{"type":"package", "name":"bootstrap-avatar-preview"},
+		{"type":"less", "file":"node_modules/bootstrap-avatar-preview/avatarPreview.less"},
+		{"type":"less", "file":"assets/less/post.less"},
 		{"type":"ts", "file":"assets/ts/Main.ts"}
 	],
 	"events": [
@@ -40,7 +43,7 @@
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\edit",
 			"parent":"\\packages\\news\\views\\panel\\edit",
-			"file":"new.edit.php"
+			"file":"html/post/edit.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\delete",
@@ -50,7 +53,7 @@
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\add",
 			"parent":"\\packages\\news\\views\\panel\\add",
-			"file":"new.add.php"
+			"file":"html/post/add.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\commentDelete",

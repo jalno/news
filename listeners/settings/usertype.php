@@ -10,7 +10,9 @@ class usertype{
 			'delete',
 			'comments_list',
 			'comments_edit',
-			'comments_delete'
+			'comments_delete',
+			'files_upload',
+			'files_delete'
 		);
 		foreach($permissions as $permission){
 			permissions::add('news_'.$permission);

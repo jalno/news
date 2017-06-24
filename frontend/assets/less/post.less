@@ -1,0 +1,171 @@
+#news-post-form{
+	.panel-white {
+		border: 1px solid #CDCDCD;
+	}
+	.panel-text{
+		border-right: 0;
+		border-left: 0;
+		border-bottom: 0;
+		.panel-heading{
+			border-bottom: 0;
+			border-right: 1px solid #CDCDCD;
+			border-left: 1px solid #CDCDCD;
+		}
+		.panel-body{
+			padding: 0;
+		}
+	}
+	.panel-description{
+		border-right: 0;
+		border-left: 0;
+		border-bottom: 0;
+		.panel-heading{
+			border-bottom: 0;
+			border-right: 1px solid #CDCDCD;
+			border-left: 1px solid #CDCDCD;
+		}
+		.panel-body{
+			padding: 0;
+		}
+	}
+	.panel-details{
+		.panel-footer{
+			padding: 0;
+		}
+	}
+	.panel-details{
+		.panel-footer{
+			.btn{
+				border-top-right-radius: 0;
+				border-top-left-radius: 0;
+				border-bottom-right-radius: 3px;
+				border-bottom-left-radius: 3px;
+				border-left: 0;
+				border-right: 0;
+				border-bottom: 0;
+			}
+		}
+	}
+	.panel-thumbnail{
+		.panel-body{
+			padding:0;
+			.avatarPreview {
+				border:none;
+			}
+		}
+	}
+	.upload-zone{
+		margin-bottom: 30px;
+		border-radius: 6px;
+		&.no-file{
+			font-family: koodak;
+			font-size: 20px;
+			cursor: pointer;
+			position: relative;
+			text-align: center;
+			background: #f6eeee;
+			padding: 10px 0 20px;
+			cursor: pointer;
+			.fa{
+				display: block;
+				font-size: 100px;
+				opacity: 0.05;
+			}
+			input[type=file]:not(.filled){
+				position: absolute;
+				top: 0;
+				height: 100%;
+				width: 100%;
+				z-index: 5;
+				opacity: 0;
+				cursor: pointer;
+			}
+			.panel{
+				display: none;
+			}
+		}
+		input[type=file].filled, &:not(.no-file) input[type=file]{
+			display: none;
+		}
+		&:not(.no-file){
+			input[type=file]{
+				display: none;
+			}
+			.no-file{
+				display: none;
+			}
+		}
+		.file{
+			overflow: hidden;
+			line-height: 30px;
+			div:first-child{
+				text-align: center;
+			}
+		}
+		table.files{
+			.fa.file-icon{
+				font-size: 30px;
+			}
+			> tbody{
+				> tr:first-child{
+					> td{
+						border-top:0;
+					}
+				}
+			}
+			td.filename{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+		.panel-body{
+			padding:0;
+		}
+		.progress {
+			margin-bottom: 0;
+			height: 28px;
+			.progress-bar{
+				line-height: 28px;
+			}
+		}
+	}
+	.btn-file2{
+		position: relative;
+		overflow: hidden;
+		background: #569099 !important;
+		border-color: #4d8189 !important;
+		color: #ffffff !important;
+		cursor: pointer;
+		input[type="file"] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			min-width: 100%;
+			min-height: 100%;
+			opacity: 0;
+			outline: none;
+			cursor: pointer !important;
+		}
+	}
+	.ui-autocomplete.ui-autocomplete-tag{
+		padding: 8px 0px;
+		border-radius: 3px;
+		.ui-menu-item{
+			padding: 7px 14px;
+			font-size: 12px;
+			line-height: 14px;
+			font-family: Tahoma;
+		}
+	}
+	div.tagsinput{
+		span.tag {
+			font-family: tahoma;
+			font-size: 11px;
+			float: right;
+			a {
+				float: left;
+			}
+		}
+	}
+}
