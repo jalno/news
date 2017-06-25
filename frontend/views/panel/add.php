@@ -1,37 +1,25 @@
 <?php
 namespace themes\clipone\views\news\panel;
 use \packages\news\views\panel\add as newADD;
-use \packages\base\frontend\theme;
 use \packages\base\translator;
 use \packages\base\options;
 use \packages\base\packages;
-use \packages\userpanel;
 use \packages\userpanel\user;
 use \themes\clipone\navigation;
-use \themes\clipone\navigation\menuItem;
 use \themes\clipone\views\formTrait;
 use \themes\clipone\viewTrait;
-
 use \packages\news\authentication;
-use \packages\news\newpost;
-
+use \packages\base\frontend\theme;
 class add extends newADD{
-	use viewTrait,formTrait;
+	use viewTrait, formTrait;
 	function __beforeLoad(){
 		$this->setTitle(array(
 			translator::trans('news'),
 			translator::trans('add')
 		));
 		navigation::active("news/addnew");
-		$this->addAssets();
 		$this->setUserInput();
-	}
-	protected function addAssets(){
-		$this->addCSSFile(theme::url('assets/css/pages/news.add.css'));
-		$this->addJSFile(theme::url('assets/plugins/ckeditor/ckeditor.js'));
-		$this->addJSFile(theme::url('assets/js/pages/new.add.js'));
-		$this->addJSFile(theme::url('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js'));
-		$this->addCSSFile(theme::url('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css'));
+		$this->addJSFile(theme::url("assets/plugins/ckeditor/ckeditor.js"));
 	}
 	function getImage(){
 		$newspackage = packages::package('news');

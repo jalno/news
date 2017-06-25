@@ -11,6 +11,17 @@
 		"fa_IR" : "langs/fa_IR.json"
 	},
 	"assets":[
+		{"type":"package", "name":"jquery"},
+		{"type":"package", "name":"jquery-ui"},
+		{"type":"package", "name":"bootstrap"},
+		{"type":"package", "name":"webuilder"},
+		{"type":"package", "name":"jquery-inputlimiter"},
+		{"type":"package", "name":"jquery.growl"},
+		{"type":"package", "name":"bootstrap-inputmsg"},
+		{"type":"package", "name":"bootstrap-avatar-preview"},
+		{"type":"less", "file":"node_modules/bootstrap-avatar-preview/avatarPreview.less"},
+		{"type":"less", "file":"assets/less/post.less"},
+		{"type":"ts", "file":"assets/ts/Main.ts"}
 	],
 	"events": [
 		{
@@ -22,42 +33,37 @@
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\index",
 			"parent":"\\packages\\news\\views\\panel\\index",
-			"file":"news.panel.list.php"
+			"file":"html/post/list.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\comment",
 			"parent":"\\packages\\news\\views\\panel\\comment",
-			"file":"news.panel.list.comment.php"
+			"file":"html/comment/list.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\edit",
 			"parent":"\\packages\\news\\views\\panel\\edit",
-			"file":"new.edit.php"
+			"file":"html/post/edit.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\delete",
 			"parent":"\\packages\\news\\views\\panel\\delete",
-			"file":"new.delete.php"
+			"file":"html/post/delete.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\add",
 			"parent":"\\packages\\news\\views\\panel\\add",
-			"file":"new.add.php"
+			"file":"html/post/add.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\commentDelete",
 			"parent":"\\packages\\news\\views\\panel\\commentDelete",
-			"file":"comment.delete.php"
+			"file":"html/comment/delete.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\commentEdit",
 			"parent":"\\packages\\news\\views\\panel\\commentEdit",
-			"file":"comment.edit.php"
-		},
-		{
-			"name":"\\themes\\clipone\\views\\news\\panel\\view",
-			"parent":"\\packages\\news\\views\\panel\\view",
-			"file":"new.view.php"
+			"file":"html/comment/edit.php"
 		}
 	]
 }

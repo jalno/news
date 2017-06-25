@@ -56,8 +56,13 @@
 		"controller": "controllers\\panel\\comments@edit"
 	},
 	{
-		"path": ["userpanel","news", "view", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\panel\\news@view",
-		"method":"get"
+		"path": ["userpanel", "news", "files", "upload"],
+		"controller": "controllers\\files@upload",
+		"method": "post"
+	},
+	{
+		"path": ["userpanel", "news", "files", "delete", {"type":"dynamic", "name":"file", "regex":"/^\\d+$/"}],
+		"controller": "controllers\\files@delete",
+		"method": "post"
 	}
 ]

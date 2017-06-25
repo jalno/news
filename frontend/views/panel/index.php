@@ -5,16 +5,17 @@ use \packages\userpanel;
 use \themes\clipone\navigation;
 use \themes\clipone\navigation\menuItem;
 use \themes\clipone\views\listTrait;
+use \themes\clipone\views\formTrait;
 use \themes\clipone\viewTrait;
 use \packages\base\translator;
 use \packages\base\view\error;
 class index extends newsIndex{
-	use viewTrait,listTrait;
+	use viewTrait, listTrait, formTrait;
 	function __beforeLoad(){
-		$this->setTitle(array(
+		$this->setTitle([
 			translator::trans('list'),
 			translator::trans('news')
-		));
+		]);
 		navigation::active("news/index");
 		$this->setButtons();
 		if(empty($this->getNews())){
@@ -57,22 +58,38 @@ class index extends newsIndex{
 			$item = new menuItem("news");
 			$item->setTitle(translator::trans('news'));
 			$item->setIcon('fa fa-newspaper-o');
+			$item->addItem($index);
 			$item->addItem($addnew);
 			$item->addItem($comments);
-			$item->addItem($index);
 			navigation::addItem($item);
 		}
 	}
 	public function setButtons(){
-		$this->setButton('news_edit', $this->canEdit, array(
+		$this->setButton('news_edit', $this->canEdit, [
 			'title' => translator::trans('edit'),
 			'icon' => 'fa fa-edit',
-			'classes' => array('btn', 'btn-xs', 'btn-warning')
-		));
-		$this->setButton('news_delete', $this->canDel, array(
+			'classes' => ['btn', 'btn-xs', 'btn-teal']
+		]);
+		$this->setButton('news_delete', $this->canDel, [
 			'title' => translator::trans('delete'),
 			'icon' => 'fa fa-times',
-			'classes' => array('btn', 'btn-xs', 'btn-bricky')
-		));
+			'classes' => ['btn', 'btn-xs', 'btn-bricky']
+		]);
+	}
+	public function getComparisonsForSelect(){
+		return [
+			[
+				'title' => translator::trans('search.comparison.contains'),
+				'value' => 'contains'
+			],
+			[
+				'title' => translator::trans('search.comparison.equals'),
+				'value' => 'equals'
+			],
+			[
+				'title' => translator::trans('search.comparison.startswith'),
+				'value' => 'startswith'
+			]
+		];
 	}
 }

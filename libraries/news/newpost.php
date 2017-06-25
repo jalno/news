@@ -3,7 +3,6 @@ namespace packages\news;
 use \packages\base\db;
 use \packages\base\db\dbObject;
 use \packages\base\http;
-
 class newpost extends dbObject{
 	const published = 1;
 	const unpublished = 2;
@@ -21,7 +20,8 @@ class newpost extends dbObject{
     );
     protected $relations = array(
 		'author' => array('hasOne', 'packages\\userpanel\\user', 'author'),
-		'comments' => array('hasMany', '\\packages\\news\\comment', 'post')
+		'comments' => array('hasMany', '\\packages\\news\\comment', 'post'),
+		'files' => array('hasMany', 'packages\\news\\file', 'post')
 	);
 	public function breakContent(){
 		$content = array($this->content,'');
@@ -40,5 +40,26 @@ class newpost extends dbObject{
 		db::where("post", $this->id);
 		db::where("status", comment::accepted);
 		return db::getValue("news_comments", "count(*)");
+	}
+	public function setAttachments(array $attachments){
+		$files = $this->files;
+		foreach($attachments as $attachment){
+			$found = false;
+			foreach($files as $key => $file){
+				if($file->id == $attachment->id){
+					$found = true;
+					unset($files[$key]);
+					break;
+				}
+			}
+			if(!$found){
+				$attachment->post = $this->id;
+				$attachment->save();
+			}
+		}
+		foreach($files as $file){
+			$file->post = null;
+			$file->save();
+		}
 	}
 }

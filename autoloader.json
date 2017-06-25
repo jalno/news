@@ -109,10 +109,6 @@
 			"file":"listeners/settings/usertype.php"
 		},
 		{
-			"classes":["views\\panel\\view"],
-			"file":"views/panel/view.php"
-		},
-		{
 			"classes":["listeners\\notifications"],
 			"file":"listeners/notifications.php"
 		},
@@ -123,6 +119,14 @@
 		{
 			"classes":["events\\comments\\add"],
 			"file":"libraries/events/comments/add.php"
+		},
+		{
+			"classes":["file"],
+			"file":"libraries/files/file.php"
+		},
+		{
+			"classes": ["controllers\\files"],
+			"file": "controllers/files.php"
 		}
 	]
 }

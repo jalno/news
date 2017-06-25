@@ -48,6 +48,22 @@
 		"usertype.permissions.news_comments_delete" : "حذف نظرات اخبار",
 		"post.readmore": "[مطالعه بیشتر]",
 		"error.news.post.notfound": "هیچ پستی یافت نشد. به محض افزودن پست جدید آن را در اینجا مشاهده خواهید کرد.",
-		"news.post.add": "افزودن پست"
+		"news.post.add": "افزودن پست",
+		"news.post.id": "شناسه",
+		"news.post.wordKey": "کلمه کلیدی",
+		"news.post.files.drag&drop":"فایل های خود را به اینجا بکشید یا برای انتخاب کلیک کنید.",
+		"usertype.permissions.news_files_upload": "آپلود فایل جدید در اخبار",
+		"usertype.permissions.news_files_delete": "حذف فایل های اخبار",
+		"news.post.save": "ذخیره",
+		"news.post.thumbnail": "تصویر بندانگشتی",
+		"news.post.files":"فایل های پیوست",
+		"news.post.files.add":"افزودن یک فایل دیگر",
+		"news.post.files.link":"لینک مستقیم",
+		"news.files.size.byBytes":"{bytes} بایت",
+		"news.files.size.byKB":"{kb} کیلوبایت",
+		"news.files.size.byMB":"{mb} مگابایت",
+		"news.files.size.byGB":"{gb} گیگابایت",
+		"news.files.size.byTB":"{tb} ترابایت",
+		"news.post.details": "جزئیات"
 	}
 }
