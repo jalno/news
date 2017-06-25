@@ -22,7 +22,7 @@ class edit extends newEdit{
 			translator::trans('news'),
 			translator::trans('edit')
 		));
-		navigation::active("news");
+		navigation::active("news/index");
 		$this->addJSFile(theme::url("assets/plugins/ckeditor/ckeditor.js"));
 		$this->setUserFormData();
 		$this->setButtons();

@@ -16,6 +16,6 @@ class delete extends newDelete{
 			translator::trans('news'),
 			translator::trans('delete')
 		));
-		navigation::active("news");
+		navigation::active("news/index");
 	}
 }

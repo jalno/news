@@ -58,9 +58,9 @@ class index extends newsIndex{
 			$item = new menuItem("news");
 			$item->setTitle(translator::trans('news'));
 			$item->setIcon('fa fa-newspaper-o');
+			$item->addItem($index);
 			$item->addItem($addnew);
 			$item->addItem($comments);
-			$item->addItem($index);
 			navigation::addItem($item);
 		}
 	}

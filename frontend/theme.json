@@ -38,7 +38,7 @@
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\comment",
 			"parent":"\\packages\\news\\views\\panel\\comment",
-			"file":"news.panel.list.comment.php"
+			"file":"html/comment/list.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\edit",
@@ -48,7 +48,7 @@
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\delete",
 			"parent":"\\packages\\news\\views\\panel\\delete",
-			"file":"new.delete.php"
+			"file":"html/post/delete.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\add",
@@ -58,12 +58,12 @@
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\commentDelete",
 			"parent":"\\packages\\news\\views\\panel\\commentDelete",
-			"file":"comment.delete.php"
+			"file":"html/comment/delete.php"
 		},
 		{
 			"name":"\\themes\\clipone\\views\\news\\panel\\commentEdit",
 			"parent":"\\packages\\news\\views\\panel\\commentEdit",
-			"file":"comment.edit.php"
+			"file":"html/comment/edit.php"
 		}
 	]
 }
