@@ -63,6 +63,7 @@
 		"news.files.size.byKB":"{kb} کیلوبایت",
 		"news.files.size.byMB":"{mb} مگابایت",
 		"news.files.size.byGB":"{gb} گیگابایت",
-		"news.files.size.byTB":"{tb} ترابایت"
+		"news.files.size.byTB":"{tb} ترابایت",
+		"news.post.details": "جزئیات"
 	}
 }

@@ -18,26 +18,6 @@ $this->the_header();
 			));
 			?>
 		</div>
-	    <div class="col-sm-6">
-			<div class="panel panel-white panel-description">
-				<div class="panel-heading">
-					<i class="fa fa-file-text-o"></i>
-					<span><?php echo translator::trans("news.description"); ?></span>
-					<div class="panel-tools">
-						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
-					</div>
-				</div>
-				<div class="panel-body">
-					<?php
-					$this->createField(array(
-						'type' => 'textarea',
-						'name' => 'description',
-						'rows' => 4
-					));
-					?>
-				</div>
-			</div>
-		</div>
 	</div>
 	<div class="row">
 	    <div class="col-md-9">
@@ -104,14 +84,14 @@ $this->the_header();
 					<?php
 					$this->createField(array(
 						'name' => 'date',
-						'label' => translator::trans("news.post.date"),
+						'label' => translator::trans("news.date"),
 						'value' => date::format('Y/m/d H:i', date::time()),
 						'class' => 'form-control ltr'
 					));
 					$this->createField(array(
 						'type' => 'select',
 						'name' => 'status',
-						'label' => translator::trans("news.post.status"),
+						'label' => translator::trans("news.status"),
 						'options' => array(
 							array(
 								'title' => translator::trans("new.published"),
@@ -125,12 +105,30 @@ $this->the_header();
 					));
 					$this->createField(array(
 						'name' => 'author_name',
-						'label' => translator::trans("news.post.author")
+						'label' => translator::trans("news.author")
 					));
 					?>
 				</div>
 				<div class="panel-footer">
 					<button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o"></i> <?php echo translator::trans("news.post.save"); ?></button>
+				</div>
+			</div>
+			<div class="panel panel-white panel-description">
+				<div class="panel-heading">
+					<i class="fa fa-file-text-o"></i>
+					<span><?php echo translator::trans("news.description"); ?></span>
+					<div class="panel-tools">
+						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
+					</div>
+				</div>
+				<div class="panel-body">
+					<?php
+					$this->createField(array(
+						'type' => 'textarea',
+						'name' => 'description',
+						'rows' => 4
+					));
+					?>
 				</div>
 			</div>
 			<div class="panel panel-white panel-thumbnail">
