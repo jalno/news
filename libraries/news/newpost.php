@@ -25,7 +25,7 @@ class newpost extends dbObject{
 	);
 	public function breakContent(){
 		$content = array($this->content,'');
-		if(preg_match("/([\\s\\S]+)<!-+more-+>([\\s\\S]+)/im", $this->content, $matches)){
+		if(preg_match("/([\s\S]*)<div+.+style=\"page-break-after:always\".*>.*<\/div>([\s\S]*)/im", $this->content, $matches)){
 			$content = array($matches[1], $matches[2]);
 		}
 		return $content;
