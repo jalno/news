@@ -273,7 +273,7 @@ export default class Managements{
 	private static runAvatarPreview(){
 		new AvatarPreview($('.post-thumbnail-image', Managements.$form));
 	}
-	private static runSubmitFormListener = function(){
+	private static runSubmitFormListener(){
 		Managements.$form.on('submit', function(e){
 			e.preventDefault();
 			let data:FormData = new FormData(this as HTMLFormElement);
