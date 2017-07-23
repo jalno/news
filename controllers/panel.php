@@ -157,36 +157,33 @@ class news extends controller{
 						}
 					}
 				}
+
 				if(isset($inputs['image'])){
-					switch($inputs['image']['error']){
-						case(0):
-							$type = getimagesize($inputs['image']['tmp_name']);
-							if(in_array($type[2], [IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG])){
-								$name = md5_file($inputs['image']['tmp_name']);
-								if($type[2] == IMAGETYPE_JPEG){
-									$type_name = '.jpg';
-								}elseif($type[2] == IMAGETYPE_GIF){
-									$type_name = '.gif';
-								}elseif($type[2] == IMAGETYPE_PNG){
-									$type_name = '.png';
-								}
-								$directory = __DIR__.'/../storage/'.$name.$type_name;
-								if(move_uploaded_file($inputs['image']['tmp_name'], $directory)){
-									$inputs['image'] = "storage/".$name.$type_name;
-								}else{
-									throw new inputValidation("image");
-								}
-							}else{
-								throw new inputValidation("image");
-							}
-							break;
-						case(4):
-							unset($inputs['image']);
-							break;
-						default:
+					if($inputs['image']['error'] == 0){
+						$type = getimagesize($inputs['image']['tmp_name']);
+						if(!in_array($type[2], [IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG])){
 							throw new inputValidation("image");
-							break;
+						}
+					}elseif($inputs['image']['error'] == 4){
+						unset($inputs['image']);
+					}else{
+						throw new inputValidation("image");
 					}
+				}
+				if(isset($inputs['image'])){
+					$name = md5_file($inputs['image']['tmp_name']);
+					if($type[2] == IMAGETYPE_JPEG){
+						$type_name = '.jpg';
+					}elseif($type[2] == IMAGETYPE_GIF){
+						$type_name = '.gif';
+					}elseif($type[2] == IMAGETYPE_PNG){
+						$type_name = '.png';
+					}
+					$directory = __DIR__.'/../storage/'.$name.$type_name;
+					if(!move_uploaded_file($inputs['image']['tmp_name'], $directory)){
+						throw new inputValidation("image");
+					}
+					$inputs['image'] = "storage/".$name.$type_name;
 				}
 				foreach(['author', 'date', 'image', 'status', 'content', 'title', 'description'] as $key){
 					if(isset($inputs[$key])){
@@ -282,27 +279,29 @@ class news extends controller{
 				if(isset($inputs['image'])){
 					if($inputs['image']['error'] == 0){
 						$type = getimagesize($inputs['image']['tmp_name']);
-						if(in_array($type[2], [IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG])){
-							$name = md5_file($inputs['image']['tmp_name']);
-							if($type[2] == IMAGETYPE_JPEG){
-								$type_name = '.jpg';
-							}elseif($type[2] == IMAGETYPE_GIF){
-								$type_name = '.gif';
-							}elseif($type[2] == IMAGETYPE_PNG){
-								$type_name = '.png';
-							}
-							$directory = __DIR__.'/../storage/'.$name.$type_name;
-							if(move_uploaded_file($inputs['image']['tmp_name'], $directory)){
-								$inputs['image'] = "storage/".$name.$type_name;
-							}else{
-								throw new inputValidation("image");
-							}
-						}else{
+						if(!in_array($type[2], [IMAGETYPE_JPEG ,IMAGETYPE_GIF, IMAGETYPE_PNG])){
 							throw new inputValidation("image");
 						}
-					}elseif($inputs['image']['error'] != 4){
+					}elseif($inputs['image']['error'] == 4){
+						unset($inputs['image']);
+					}else{
 						throw new inputValidation("image");
 					}
+				}
+				if(isset($inputs['image'])){
+					$name = md5_file($inputs['image']['tmp_name']);
+					if($type[2] == IMAGETYPE_JPEG){
+						$type_name = '.jpg';
+					}elseif($type[2] == IMAGETYPE_GIF){
+						$type_name = '.gif';
+					}elseif($type[2] == IMAGETYPE_PNG){
+						$type_name = '.png';
+					}
+					$directory = __DIR__.'/../storage/'.$name.$type_name;
+					if(!move_uploaded_file($inputs['image']['tmp_name'], $directory)){
+						throw new inputValidation("image");
+					}
+					$inputs['image'] = "storage/".$name.$type_name;
 				}
 				$post = new post;
 				foreach(['author', 'date', 'image', 'content', 'status', 'title', 'description'] as $item){
