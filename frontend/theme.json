@@ -20,6 +20,8 @@
 		{"type":"package", "name":"bootstrap-inputmsg"},
 		{"type":"package", "name":"dropzone"},
 		{"type":"package", "name":"bootstrap-avatar-preview"},
+		{"type":"package", "name":"dropzone"},
+		{"type":"package", "name":"jquery.fancytree"},
 		{"type":"less", "file":"node_modules/bootstrap-avatar-preview/avatarPreview.less"},
 		{"type":"less", "file":"assets/less/post.less"},
 		{"type":"ts", "file":"assets/ts/Main.ts"}
