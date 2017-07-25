@@ -1,9 +1,11 @@
 <?php
 namespace packages\news\controllers;
 use \packages\base;
+use \packages\userpanel;
 use \packages\base\http;
 use \packages\base\NotFound;
 use \packages\base\view\error;
+use \packages\base\NoViewException;
 use \packages\base\inputValidation;
 use \packages\base\views\FormError;
 use \packages\news\controller;
@@ -31,7 +33,11 @@ class news extends controller{
 		if(!$new = newpost::byId($data['id'])){
 			throw new NotFound();
 		}
-		$view = view::byName("\\packages\\news\\views\\news\\view");
+		try{
+			$view = view::byName("\\packages\\news\\views\\news\\view");
+		}catch(NoViewException $error){
+			$this->response->Go(userpanel\url('news/view/' . $new->id));
+		}
 		$new->view++;
 		$new->save();
 		$view->setNew($new);

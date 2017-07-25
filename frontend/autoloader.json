@@ -46,6 +46,10 @@
 		{
 			"classes":["listeners\\news\\dashboard"],
 			"file":"listeners/clipone/dashboard.php"
+		},
+		{
+			"classes":["views\\news\\panel\\view"],
+			"file":"views/panel/view.php"
 		}
 	]
 }

@@ -64,5 +64,10 @@
 		"path": ["userpanel", "news", "files", "delete", {"type":"dynamic", "name":"file", "regex":"/^\\d+$/"}],
 		"controller": "controllers\\files@delete",
 		"method": "post"
+	},
+	{
+		"path": ["userpanel", "news", "view", {"type":"dynamic", "name":"id", "regex":"/^\\d+$/"}],
+		"controller": "controllers\\panel\\news@view",
+		"method":"get"
 	}
 ]

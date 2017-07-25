@@ -127,6 +127,11 @@
 		{
 			"classes": ["controllers\\files"],
 			"file": "controllers/files.php"
+		},
+		{
+			"classes":["views\\panel\\view"],
+			"file":"views/panel/view.php"
 		}
+
 	]
 }

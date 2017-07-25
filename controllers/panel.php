@@ -331,4 +331,16 @@ class news extends controller{
 		$this->response->setView($view);
 		return $this->response;
 	}
+	public function view($data){
+		$view = view::byName("\\packages\\news\\views\\panel\\view");
+		if(!$new = post::byId($data['id'])){
+			throw new NotFound();
+		}
+		$new->view += 1;
+		$new->save();
+		$view->setNew($new);
+		$this->response->setView($view);
+		$this->response->setStatus(true);
+		return $this->response;
+	}
 }
