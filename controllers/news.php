@@ -95,10 +95,18 @@ class news extends controller{
 	}
 	public function archive($data){
 		$first = date::mktime(0, 0, 0, $data['month'], 1, $data['year']);
-		$last = date::mktime(0, 0, 0, $data['month'], 30, $data['year']);
+		$month = $data["month"];
+		$year = $data["year"];
+		if ($month == 12) {
+			$month = 1;
+			$year++;
+		} else {
+			$month++;
+		}
+		$last = date::mktime(0, 0, 0, $month, 1, $year);
 		$new = new newpost();
 		$new->orderBy('date', 'DESC');
-		$new->where('date', $first, '>');
+		$new->where('date', $first, '>=');
 		$new->where('date', $last, '<');
 		$new->where('status', newpost::published);
 		$new->pageLimit = $this->items_per_page;
