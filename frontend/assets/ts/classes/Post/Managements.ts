@@ -7,7 +7,6 @@ import "jquery.growl";
 import "bootstrap-inputmsg";
 import "bootstrap-tagsinput";
 import "bootstrap-avatar-preview";
-import "jquery.fancytree/dist/jquery.fancytree-all-deps.min.js";
 import { AvatarPreview } from 'bootstrap-avatar-preview/AvatarPreview';
 declare const CKEDITOR:any;
 export default class Managements{
