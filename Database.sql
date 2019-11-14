@@ -1,7 +1,3 @@
-/*
-*	News
-*	https://git.jeyserver.com/abedi/news
-*/
 
 CREATE TABLE `news_posts` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
