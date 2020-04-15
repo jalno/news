@@ -42,6 +42,21 @@
 		"sms.template.variable.comment->name":"نام",
 		"sms.template.variable.comment->date":"تاریخ ثبت",
 		"sms.template.variable.comment->text":"محتوا",
-		"sms.template.variable.comment->status":"وضعیت"
+		"sms.template.variable.comment->status":"وضعیت",
+
+		"usertype.permissions.news": "اخبار",
+		"usertype.permissions.news_list" : "لیست اخبار",
+		"usertype.permissions.news_add" : "افزودن خبر‌",
+		"usertype.permissions.news_edit" : "ویرایش خبر",
+		"usertype.permissions.news_delete" : "حذف خبر",
+
+		"usertype.permissions.news_comments": "نظرات اخبار",
+		"usertype.permissions.news_comments_list" : "لیست نظرات اخبار",
+		"usertype.permissions.news_comments_edit" : "ویرایش نظرات اخبار",
+		"usertype.permissions.news_comments_delete" : "حذف نظرات اخبار",
+
+		"usertype.permissions.news_files": "فایل های اخبار",
+		"usertype.permissions.news_files_upload": "آپلود فایل جدید در اخبار",
+		"usertype.permissions.news_files_delete": "حذف فایل های اخبار"
 	}
 }
