@@ -128,6 +128,9 @@ class news extends controller{
 			'text' => [
 				'optional' => true
 			],
+			'content' => [
+				'optional' => true
+			],
 			'attachment' => [
 				'optional' => true
 			]
