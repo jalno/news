@@ -41,7 +41,10 @@ class news extends controller{
 		$new->view++;
 		$new->save();
 		$view->setNew($new);
-		$view->setData($new->comments, 'comments');
+		$comment = new Comment();
+		$comment->where("post", $new->id);
+		$comment->where("status", Comment::accepted);
+		$view->setData($comment->get(), 'comments');
 		if(http::is_post()){
 			$this->response->setStatus(false);
 			$inputsRules = [
