@@ -14,6 +14,6 @@ class controller extends \packages\base\controller{
 		if($this->page < 1)$this->page = 1;
 		if($this->items_per_page < 1)$this->items_per_page = 10;
 		db::pageLimit($this->items_per_page);
-		$this->response = new response();
+		$this->response = new response(false);
 	}
 }

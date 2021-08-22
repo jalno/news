@@ -1,22 +1,19 @@
 <?php
 namespace packages\news\controllers;
+
+
 use \packages\base;
 use \packages\userpanel;
-use \packages\base\http;
-use \packages\base\NotFound;
-use \packages\base\view\error;
-use \packages\base\NoViewException;
-use \packages\base\inputValidation;
-use \packages\base\views\FormError;
-use \packages\news\controller;
-use \packages\news\view;
-use \packages\news\newpost;
-use \packages\news\events;
-use \packages\news\comment;
-use \packages\userpanel\date;
-class news extends controller{
-	public function index(){
-		if($view = view::byName("\\packages\\news\\views\\news\\index")){
+use packages\userpanel\date;
+use packages\base\{View\Error, views\FormError, HTTP, InputValidation, NoViewException, NotFound, Response};
+use packages\news\{Comment, Controller, events, Newpost, View};
+
+class News extends Controller {
+
+	public function index(): Response {
+		$view = View::byName(\packages\news\views\news\Index::class);
+		if ($view) {
+			$this->response->setView($view);
 			$new = new newpost();
 			$new->orderBy('date', 'DESC');
 			$new->where('status', newpost::published);
@@ -25,9 +22,9 @@ class news extends controller{
 			$view->setDataList($news);
 			$view->setPaginate($this->page, base\db::totalCount(), $this->items_per_page);
 			$view->setNews($news);
-			$this->response->setView($view);
-			return $this->response;
+			$this->response->setStatus(true);
 		}
+		return $this->response;
 	}
 	public function view($data){
 		if(!$new = newpost::byId($data['id'])){
