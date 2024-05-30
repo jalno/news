@@ -1,11 +1,11 @@
 <?php
 use \packages\base;
-use \packages\base\json;
-use \packages\base\translator;
+use \packages\base\Json;
+use \packages\base\Translator;
 use \packages\userpanel;
-use \packages\userpanel\date;
-use \packages\news\authorization;
-use \packages\news\newpost as post;
+use \packages\userpanel\Date;
+use \packages\news\Authorization;
+use \packages\news\NewPost as Post;
 $this->the_header();
 ?>
 <form id="news-post-form" action="<?php echo userpanel\url('news/edit/'.$this->post->id); ?>" method="post" enctype="multipart/form-data">
@@ -23,7 +23,7 @@ $this->the_header();
 			<?php
 			$this->createField(array(
 				'name' => 'title',
-				'label' => translator::trans("news.title")
+				'label' => Translator::trans("news.title")
 			));
 			?>
 		</div>
@@ -35,7 +35,7 @@ $this->the_header();
 					<div class="panel panel-white panel-text">
 						<div class="panel-heading">
 							<i class="fa fa-edit"></i>
-							<span><?php echo translator::trans("news.text"); ?></span>
+							<span><?php echo Translator::trans("news.text"); ?></span>
 							<div class="panel-tools">
 								<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 							</div>
@@ -54,14 +54,14 @@ $this->the_header();
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="upload-zone<?php if(!count($this->post->files))echo(' no-file'); ?>" data-can-delete="<?php echo(authorization::is_accessed('files_delete') ? 'true' : 'false'); ?>">
+					<div class="upload-zone<?php if(!count($this->post->files))echo(' no-file'); ?>" data-can-delete="<?php echo(Authorization::is_accessed('files_delete') ? 'true' : 'false'); ?>">
 						<input type="file" name="file" multiple="mutliple">
 						<div class="panel panel-white">
 							<div class="panel-heading">
 								<i class="fa fa-paperclip"></i>
-								<span><?php echo translator::trans("blog.post.files"); ?></span>
+								<span><?php echo Translator::trans("blog.post.files"); ?></span>
 								<div class="panel-tools">
-									<a class="btn btn-xs btn-link btn-add tooltips" href="#" title="<?php echo translator::trans('blog.post.files.add'); ?>"><i class="fa fa-plus"></i></a>
+									<a class="btn btn-xs btn-link btn-add tooltips" href="#" title="<?php echo Translator::trans('blog.post.files.add'); ?>"><i class="fa fa-plus"></i></a>
 									<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 								</div>
 							</div>
@@ -87,7 +87,7 @@ $this->the_header();
 							</div>
 						</div>
 						<div class="no-file">
-							<i class="fa fa-cloud-upload"></i><?php echo translator::trans('blog.post.files.drag&drop'); ?>
+							<i class="fa fa-cloud-upload"></i><?php echo Translator::trans('blog.post.files.drag&drop'); ?>
 						</div>
 					</div>
 				</div>
@@ -97,7 +97,7 @@ $this->the_header();
 			<div class="panel panel-white panel-details">
 				<div class="panel-heading">
 					<i class="fa fa-clock-o"></i>
-					<span><?php echo translator::trans("news.post.details"); ?></span>
+					<span><?php echo Translator::trans("news.post.details"); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
@@ -108,39 +108,39 @@ $this->the_header();
 					<?php
 					$this->createField(array(
 						'name' => 'date',
-						'label' => translator::trans("news.date"),
-						'value' => date::format('Y/m/d H:i', date::time()),
+						'label' => Translator::trans("news.date"),
+						'value' => Date::format('Y/m/d H:i', Date::time()),
 						'class' => 'form-control ltr'
 					));
 					$this->createField(array(
 						'type' => 'select',
 						'name' => 'status',
-						'label' => translator::trans("news.status"),
+						'label' => Translator::trans("news.status"),
 						'options' => array(
 							array(
-								'title' => translator::trans("new.published"),
-								'value' => post::published
+								'title' => Translator::trans("new.published"),
+								'value' => Post::published
 							),
 							array(
-								'title' => translator::trans("new.unpublished"),
-								'value' => post::unpublished
+								'title' => Translator::trans("new.unpublished"),
+								'value' => Post::unpublished
 							)
 						)
 					));
 					$this->createField(array(
 						'name' => 'author_name',
-						'label' => translator::trans("news.author")
+						'label' => Translator::trans("news.author")
 					));
 					?>
 				</div>
 				<div class="panel-footer">
-					<button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o"></i> <?php echo translator::trans("news.post.save"); ?></button>
+					<button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o"></i> <?php echo Translator::trans("news.post.save"); ?></button>
 				</div>
 			</div>
 			<div class="panel panel-white panel-description">
 				<div class="panel-heading">
 					<i class="fa fa-file-text-o"></i>
-					<span><?php echo translator::trans("news.description"); ?></span>
+					<span><?php echo Translator::trans("news.description"); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
@@ -158,7 +158,7 @@ $this->the_header();
 			<div class="panel panel-white panel-thumbnail">
 				<div class="panel-heading">
 					<i class="fa fa-picture-o"></i>
-					<span><?php echo translator::trans("news.post.thumbnail"); ?></span>
+					<span><?php echo Translator::trans("news.post.thumbnail"); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>

@@ -1,12 +1,12 @@
 <?php
 use \packages\base;
-use \packages\base\json;
-use \packages\base\translator;
+use \packages\base\Json;
+use \packages\base\Translator;
 use \packages\userpanel;
-use \themes\clipone\utility;
-use \packages\userpanel\date;
+use \themes\clipone\Utility;
+use \packages\userpanel\Date;
 
-use \packages\news\comment;
+use \packages\news\Comment;
 
 $this->the_header();
 ?>
@@ -16,7 +16,7 @@ $this->the_header();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-edit"></i>
-                <span><?php echo translator::trans("edit").' '.translator::trans("new").' #'.$this->getComment()->id; ?></span>
+                <span><?php echo Translator::trans("edit").' '.Translator::trans("new").' #'.$this->getComment()->id; ?></span>
 				<div class="panel-tools">
 					<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 				</div>
@@ -27,14 +27,14 @@ $this->the_header();
                         <div class="col-md-6">
 	                        <?php $this->createField(array(
 								'name' => 'name',
-								'label' => translator::trans("comments.name"),
+								'label' => Translator::trans("comments.name"),
 								'value' => $this->getComment()->name
 							));
 
 							$this->createField(array(
 								'type' => 'email',
 								'name' => 'email',
-								'label' => translator::trans("comments.email"),
+								'label' => Translator::trans("comments.email"),
 								'value' => $this->getComment()->email,
 								'class' => 'form-control ltr'
 							));
@@ -45,27 +45,27 @@ $this->the_header();
 							$this->createField(array(
 								'name' => 'status',
 								'type' => 'select',
-								'label' => translator::trans("comments.status"),
+								'label' => Translator::trans("comments.status"),
 								'options' => array(
 									array(
-										'title' => translator::trans("comment.accepted"),
-										'value' => comment::accepted
+										'title' => Translator::trans("comment.accepted"),
+										'value' => Comment::accepted
 									),
 									array(
-										'title' => translator::trans("comment.pending"),
-										'value' => comment::pending
+										'title' => Translator::trans("comment.pending"),
+										'value' => Comment::pending
 									),
 									array(
-										'title' => translator::trans("comment.unverified"),
-										'value' => comment::unverified
+										'title' => Translator::trans("comment.unverified"),
+										'value' => Comment::unverified
 									)
 								),
 								'value' => $this->getComment()->status
 							));
 							$this->createField(array(
 								'name' => 'date',
-								'label' => translator::trans("comments.date"),
-								'value' => date::format('Y/m/d H:i', $this->getComment()->date),
+								'label' => Translator::trans("comments.date"),
+								'value' => Date::format('Y/m/d H:i', $this->getComment()->date),
 								'class' => 'form-control ltr'
 							));
 							?>
@@ -74,7 +74,7 @@ $this->the_header();
 							<?php $this->createField(array(
 								'name' => 'text',
 								'type' => 'textarea',
-								'label' => translator::trans("comments.text"),
+								'label' => Translator::trans("comments.text"),
 								'class' => 'ckeditor',
 								'value' => $this->getComment()->text
 							));
@@ -83,8 +83,8 @@ $this->the_header();
 						<div class="col-md-12">
 			                <hr>
 			                <p>
-			                    <a href="<?php echo userpanel\url('news/comments'); ?>" class="btn btn-light-grey"><i class="fa fa-chevron-circle-right"></i> <?php echo translator::trans('return'); ?></a>
-			                    <button type="submit" class="btn btn-yellow"><i class="fa fa-check-square-o"></i> <?php echo translator::trans("update") ?></button>
+			                    <a href="<?php echo userpanel\url('news/comments'); ?>" class="btn btn-light-grey"><i class="fa fa-chevron-circle-right"></i> <?php echo Translator::trans('return'); ?></a>
+			                    <button type="submit" class="btn btn-yellow"><i class="fa fa-check-square-o"></i> <?php echo Translator::trans("update") ?></button>
 			                </p>
 						</div>
 	                </form>

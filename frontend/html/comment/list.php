@@ -1,15 +1,15 @@
 <?php
 use \packages\base;
-use \packages\base\translator;
+use \packages\base\Translator;
 
 use \packages\userpanel;
-use \packages\userpanel\user;
-use \packages\userpanel\date;
+use \packages\userpanel\User;
+use \packages\userpanel\Date;
 
-use \themes\clipone\utility;
+use \themes\clipone\Utility;
 
-use \packages\news\newpost;
-use \packages\news\comment;
+use \packages\news\NewPost;
+use \packages\news\Comment;
 
 
 $this->the_header();
@@ -34,12 +34,12 @@ $this->the_header();
 						<thead>
 							<tr>
 								<th class="center">#</th>
-								<th><?php echo translator::trans('comments.text'); ?></th>
-								<th><?php echo translator::trans('comments.post'); ?></th>
-								<th><?php echo translator::trans('comments.date'); ?></th>
-								<th><?php echo translator::trans('comments.name'); ?></th>
-								<th><?php echo translator::trans('comments.email'); ?></th>
-								<th><?php echo translator::trans('comments.status'); ?></th>
+								<th><?php echo Translator::trans('comments.text'); ?></th>
+								<th><?php echo Translator::trans('comments.post'); ?></th>
+								<th><?php echo Translator::trans('comments.date'); ?></th>
+								<th><?php echo Translator::trans('comments.name'); ?></th>
+								<th><?php echo Translator::trans('comments.email'); ?></th>
+								<th><?php echo Translator::trans('comments.status'); ?></th>
 								<?php if($hasButtons){ ?><th></th><?php } ?>
 							</tr>
 						</thead>
@@ -48,25 +48,25 @@ $this->the_header();
 							foreach($this->getComments() as $row){
 								$this->setButtonParam('comment_edit', 'link', userpanel\url("news/comment/edit/".$row->id));
 								$this->setButtonParam('comment_delete', 'link', userpanel\url("news/comment/delete/".$row->id));
-								$statusClass = utility::switchcase($row->status, array(
-									'label label-warning' => comment::pending,
-									'label label-success' => comment::accepted,
-									'label label-danger' => comment::unverified
+								$statusClass = Utility::switchcase($row->status, array(
+									'label label-warning' => Comment::pending,
+									'label label-success' => Comment::accepted,
+									'label label-danger' => Comment::unverified
 								));
-								$statusTxt = utility::switchcase($row->status, array(
-									'comment.pending' => comment::pending,
-									'comment.accepted' => comment::accepted,
-									'comment.unverified' => comment::unverified
+								$statusTxt = Utility::switchcase($row->status, array(
+									'comment.pending' => Comment::pending,
+									'comment.accepted' => Comment::accepted,
+									'comment.unverified' => Comment::unverified
 								));
 							?>
 							<tr>
 								<td class="center"><?php echo $row->id; ?></td>
 								<td><?php echo $row->text; ?></td>
 								<td><a href="<?php echo base\url("news/view/".$row->new->id); ?>"><?php echo $row->new->title; ?></a></td>
-								<td><?php echo date::format('Y/m/d H:i', $row->date); ?></td>
+								<td><?php echo Date::format('Y/m/d H:i', $row->date); ?></td>
 								<td><?php echo $row->name; ?></td>
 								<td><?php echo $row->email; ?></td>
-								<td class="hidden-xs"><span class="<?php echo $statusClass; ?>"><?php echo translator::trans($statusTxt); ?></span></td>
+								<td class="hidden-xs"><span class="<?php echo $statusClass; ?>"><?php echo Translator::trans($statusTxt); ?></span></td>
 								<?php
 								if($hasButtons){
 									echo("<td class=\"center\">".$this->genButtons()."</td>");
@@ -80,7 +80,7 @@ $this->the_header();
 					</table>
 				</div>
 			<?php }else{ ?>
-					<p><?php echo translator::trans("No.comments.unpublished"); ?></p>
+					<p><?php echo Translator::trans("No.comments.unpublished"); ?></p>
 			<?php } ?>
 			</div>
 		</div>

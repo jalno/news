@@ -1,6 +1,6 @@
 <?php
-use \packages\base\translator;
-use \packages\userpanel\date;
+use \packages\base\Translator;
+use \packages\userpanel\Date;
 $this->the_header();
 ?>
 <div class="row">
@@ -16,7 +16,7 @@ $this->the_header();
             <div class="panel-body">
 				<?php echo $this->new->content ?>
 			</div>
-			<div class="panel-footer"><?php echo translator::trans('news.date').':'.date::format("l j F Y", $this->new->date); ?></div>
+			<div class="panel-footer"><?php echo Translator::trans('news.date').':'.Date::format("l j F Y", $this->new->date); ?></div>
         </div>
     </div>
 </div>
