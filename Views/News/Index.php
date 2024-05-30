@@ -1,13 +1,21 @@
 <?php
+
 namespace packages\news\Views\News;
-use \packages\news\Views\ListView ;
-use \packages\base\Views\Traits\Form as FormTrait;
-class Index extends ListView{
-	use FormTrait;
-	public function setNews(array $news){
-		$this->setData($news, 'news');
-	}
-	public function getNews():array{
-		return $this->getData('news');
-	}
+
+use packages\base\Views\Traits\Form as FormTrait;
+use packages\news\Views\ListView;
+
+class Index extends ListView
+{
+    use FormTrait;
+
+    public function setNews(array $news)
+    {
+        $this->setData($news, 'news');
+    }
+
+    public function getNews(): array
+    {
+        return $this->getData('news');
+    }
 }

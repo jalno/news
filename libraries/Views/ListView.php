@@ -1,4 +1,7 @@
 <?php
+
 namespace packages\news\Views;
-class ListView extends \packages\base\Views\ListView{
+
+class ListView extends \packages\base\Views\ListView
+{
 }

@@ -1,31 +1,30 @@
 <?php
-use \packages\base;
-use \packages\base\Json;
-use \packages\base\Translator;
-use \packages\userpanel;
-use \packages\userpanel\Date;
-use \packages\news\Authorization;
-use \packages\news\NewPost as Post;
+use packages\base\Translator;
+use packages\news\Authorization;
+use packages\news\NewPost as Post;
+use packages\userpanel;
+use packages\userpanel\Date;
+
 $this->the_header();
 ?>
 <form id="news-post-form" action="<?php echo userpanel\url('news/edit/'.$this->post->id); ?>" method="post" enctype="multipart/form-data">
 	<?php
-	foreach($this->post->files as $file){
-		$this->createField(array(
-			'type' => 'hidden',
-			'name' => 'attachment[]',
-			'value' => $file->id
-		));
-	}
-	?>
+    foreach ($this->post->files as $file) {
+        $this->createField([
+            'type' => 'hidden',
+            'name' => 'attachment[]',
+            'value' => $file->id,
+        ]);
+    }
+?>
 	<div class="row">
 	    <div class="col-sm-6">
 			<?php
-			$this->createField(array(
-				'name' => 'title',
-				'label' => Translator::trans("news.title")
-			));
-			?>
+        $this->createField([
+            'name' => 'title',
+            'label' => Translator::trans('news.title'),
+        ]);
+?>
 		</div>
 	</div>
 	<div class="row">
@@ -35,31 +34,33 @@ $this->the_header();
 					<div class="panel panel-white panel-text">
 						<div class="panel-heading">
 							<i class="fa fa-edit"></i>
-							<span><?php echo Translator::trans("news.text"); ?></span>
+							<span><?php echo Translator::trans('news.text'); ?></span>
 							<div class="panel-tools">
 								<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 							</div>
 						</div>
 						<div class="panel-body">
 							<?php
-							$this->createField(array(
-								'name' => 'content',
-								'type' => 'textarea',
-								'class' => 'ckeditor'
-							));
-							?>
+                $this->createField([
+                    'name' => 'content',
+                    'type' => 'textarea',
+                    'class' => 'ckeditor',
+                ]);
+?>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="upload-zone<?php if(!count($this->post->files))echo(' no-file'); ?>" data-can-delete="<?php echo(Authorization::is_accessed('files_delete') ? 'true' : 'false'); ?>">
+					<div class="upload-zone<?php if (!count($this->post->files)) {
+					    echo ' no-file';
+					} ?>" data-can-delete="<?php echo Authorization::is_accessed('files_delete') ? 'true' : 'false'; ?>">
 						<input type="file" name="file" multiple="mutliple">
 						<div class="panel panel-white">
 							<div class="panel-heading">
 								<i class="fa fa-paperclip"></i>
-								<span><?php echo Translator::trans("blog.post.files"); ?></span>
+								<span><?php echo Translator::trans('blog.post.files'); ?></span>
 								<div class="panel-tools">
 									<a class="btn btn-xs btn-link btn-add tooltips" href="#" title="<?php echo Translator::trans('blog.post.files.add'); ?>"><i class="fa fa-plus"></i></a>
 									<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
@@ -69,9 +70,9 @@ $this->the_header();
 								<table class="table files">
 									<tbody>
 									<?php
-									foreach($this->post->files as $file){
-										$this->setButtonParam("file_link", "link", $file->url(true));
-									?>
+                                    foreach ($this->post->files as $file) {
+                                        $this->setButtonParam('file_link', 'link', $file->url(true));
+                                        ?>
 									<tr data-id="<?php echo $file->id; ?>">
 										<td class="center"><i class="file-icon fa <?php echo $this->getFileIcon($file); ?>"></i></td>
 										<td class="col-xs-4 ltr filename"><?php echo $file->name; ?></td>
@@ -80,8 +81,8 @@ $this->the_header();
 										<td class="center"><?php echo $this->genButtons(); ?></td>
 									</tr>
 									<?php
-									}
-									?>
+                                    }
+?>
 									</tbody>
 								</table>
 							</div>
@@ -97,7 +98,7 @@ $this->the_header();
 			<div class="panel panel-white panel-details">
 				<div class="panel-heading">
 					<i class="fa fa-clock-o"></i>
-					<span><?php echo Translator::trans("news.post.details"); ?></span>
+					<span><?php echo Translator::trans('news.post.details'); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
@@ -106,59 +107,59 @@ $this->the_header();
 					<input type="hidden" name="author" value="<?php echo $this->getDataForm('author'); ?>">
 					<input type="hidden" name="category" value="" class="">
 					<?php
-					$this->createField(array(
-						'name' => 'date',
-						'label' => Translator::trans("news.date"),
-						'value' => Date::format('Y/m/d H:i', Date::time()),
-						'class' => 'form-control ltr'
-					));
-					$this->createField(array(
-						'type' => 'select',
-						'name' => 'status',
-						'label' => Translator::trans("news.status"),
-						'options' => array(
-							array(
-								'title' => Translator::trans("new.published"),
-								'value' => Post::published
-							),
-							array(
-								'title' => Translator::trans("new.unpublished"),
-								'value' => Post::unpublished
-							)
-						)
-					));
-					$this->createField(array(
-						'name' => 'author_name',
-						'label' => Translator::trans("news.author")
-					));
-					?>
+                    $this->createField([
+                        'name' => 'date',
+                        'label' => Translator::trans('news.date'),
+                        'value' => Date::format('Y/m/d H:i', Date::time()),
+                        'class' => 'form-control ltr',
+                    ]);
+$this->createField([
+    'type' => 'select',
+    'name' => 'status',
+    'label' => Translator::trans('news.status'),
+    'options' => [
+        [
+            'title' => Translator::trans('new.published'),
+            'value' => Post::published,
+        ],
+        [
+            'title' => Translator::trans('new.unpublished'),
+            'value' => Post::unpublished,
+        ],
+    ],
+]);
+$this->createField([
+    'name' => 'author_name',
+    'label' => Translator::trans('news.author'),
+]);
+?>
 				</div>
 				<div class="panel-footer">
-					<button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o"></i> <?php echo Translator::trans("news.post.save"); ?></button>
+					<button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o"></i> <?php echo Translator::trans('news.post.save'); ?></button>
 				</div>
 			</div>
 			<div class="panel panel-white panel-description">
 				<div class="panel-heading">
 					<i class="fa fa-file-text-o"></i>
-					<span><?php echo Translator::trans("news.description"); ?></span>
+					<span><?php echo Translator::trans('news.description'); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
 				</div>
 				<div class="panel-body">
 					<?php
-					$this->createField(array(
-						'type' => 'textarea',
-						'name' => 'description',
-						'rows' => 4
-					));
-					?>
+$this->createField([
+    'type' => 'textarea',
+    'name' => 'description',
+    'rows' => 4,
+]);
+?>
 				</div>
 			</div>
 			<div class="panel panel-white panel-thumbnail">
 				<div class="panel-heading">
 					<i class="fa fa-picture-o"></i>
-					<span><?php echo Translator::trans("news.post.thumbnail"); ?></span>
+					<span><?php echo Translator::trans('news.post.thumbnail'); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
@@ -178,4 +179,4 @@ $this->the_header();
 	</div>
 </form>
 <?php
-	$this->the_footer();
+    $this->the_footer();
