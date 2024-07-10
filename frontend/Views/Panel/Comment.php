@@ -1,6 +1,6 @@
 <?php
 
-namespace themes\clipone\Views\News\panel;
+namespace themes\clipone\Views\News\Panel;
 
 use packages\base\Translator;
 use packages\news\Views\Panel\Comment as NewsComment;
