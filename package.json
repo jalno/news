@@ -7,19 +7,18 @@
 		"fa_IR" : "langs/fa_IR.json",
 		"en_US" : "langs/en_US.json"
 	},
-	"dependencies": ["base", "userpanel"],
 	"sitemap": [{
 		"type":"dynamic",
-		"controller":"controllers\\sitemap@import"
+		"controller":"packages/news/Controllers/SiteMap@import"
 	}],
 	"events": [
 		{
-			"name":"\\packages\\userpanel\\events\\usertype_permissions_list",
-			"listener": "listeners\\settings\\usertype@permissions_list"
+			"name":"packages/userpanel/Events/UserTypePermissionsList",
+			"listener": "packages/news/Listeners/Settings/UserType@permissions_list"
 		},
 		{
-			"name":"\\packages\\notifications\\events",
-			"listener": "listeners\\notifications@events"
+			"name":"packages/notifications/Events",
+			"listener": "packages/news/Listeners/Notifications@events"
 		}
 	]
 }

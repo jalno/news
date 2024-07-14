@@ -1,73 +1,73 @@
 [
 	{
 		"path": "news",
-		"controller": "controllers\\news@index",
+		"controller": "packages/news/Controllers/News@index",
 		"method":"get"
 	},
 	{
 		"path": ["news", "view", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\news@view"
+		"controller": "packages/news/Controllers/News@view"
 	},
 	{
 		"path": ["news", "archive", {"type":"dynamic", "name":"year", "regex":"/^(\\d){4}$/"}, {"type":"dynamic", "name":"month", "regex":"/^(\\d+){2}$/"}],
-		"controller": "controllers\\news@archive"
+		"controller": "packages/news/Controllers/News@archive"
 	},
 	{
 		"path": ["news", "author", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\news@author"
+		"controller": "packages/news/Controllers/News@author"
 	},
 	{
-		"path": ["news", "rss"],
-		"controller": "controllers\\rss@build"
+		"path": "news/rss",
+		"controller": "packages/news/Controllers/RSS@build"
 	},
 	{
-		"path": ["userpanel", "news"],
-		"controller": "controllers\\panel\\news@index",
+		"path": "userpanel/news",
+		"controller": "packages/news/Controllers/Panel/News@index",
 		"method": "get"
 	},
 	{
-		"path": ["userpanel", "news", "comments"],
-		"controller": "controllers\\panel\\comments@index",
+		"path": "userpanel/news/comments",
+		"controller": "packages/news/Controllers/Panel/Comments@index",
 		"method": "get"
 	},
 	{
 		"path": ["userpanel", "news", "edit", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\panel\\news@edit"
+		"controller": "packages/news/Controllers/Panel/news@edit"
 	},
 	{
 		"path": ["userpanel", "news", "delete", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\panel\\news@delete"
+		"controller": "packages/news/Controllers/Panel/News@delete"
 	},
 	{
-		"path": ["userpanel", "news", "add"],
-		"controller": "controllers\\panel\\news@add"
+		"path": "userpanel/news/add",
+		"controller": "packages/news/Controllers/Panel/News@add"
 	},
 	{
 		"path": ["userpanel", "news", "comments", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\panel\\comments@index",
+		"controller": "packages/news/Controllers/Panel/Comments@index",
 		"method": "get"
 	},
 	{
 		"path": ["userpanel", "news", "comment", "delete", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\panel\\comments@delete"
+		"controller": "packages/news/Controllers/Panel/Comments@delete"
 	},
 	{
 		"path": ["userpanel", "news", "comment", "edit", {"type":"dynamic", "name":"id", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\panel\\comments@edit"
+		"controller": "packages/news/Controllers/Panel/Comments@edit"
 	},
 	{
 		"path": ["userpanel", "news", "files", "upload"],
-		"controller": "controllers\\files@upload",
+		"controller": "packages/news/Controllers/Files@upload",
 		"method": "post"
 	},
 	{
 		"path": ["userpanel", "news", "files", "delete", {"type":"dynamic", "name":"file", "regex":"/^\\d+$/"}],
-		"controller": "controllers\\files@delete",
+		"controller": "packages/news/Controllers/Files@delete",
 		"method": "post"
 	},
 	{
 		"path": ["userpanel", "news", "view", {"type":"dynamic", "name":"id", "regex":"/^\\d+$/"}],
-		"controller": "controllers\\panel\\news@view",
+		"controller": "packages/news/Controllers/Panel/News@view",
 		"method":"get"
 	}
 ]
