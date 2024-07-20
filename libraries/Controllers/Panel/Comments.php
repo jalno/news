@@ -2,7 +2,7 @@
 
 namespace packages\news\Controllers\Panel;
 
-use packages\base\HTTP;
+use packages\base\Http;
 use packages\base\InputValidation;
 use packages\base\Views\FormError;
 use packages\news\Authorization;
