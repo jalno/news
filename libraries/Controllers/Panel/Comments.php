@@ -12,6 +12,7 @@ use packages\userpanel;
 use packages\userpanel\Controller;
 use packages\userpanel\Date;
 use packages\userpanel\View;
+use themes\clipone\Views\News\Panel as Views;
 
 class Comments extends Controller
 {
@@ -20,7 +21,7 @@ class Comments extends Controller
     public function index($data)
     {
         Authorization::haveOrFail('comments_list');
-        $view = View::byName(Panel\Comment::class);
+        $view = View::byName(Views\Comment::class);
         $comment = new Comment();
         if ($data['id']) {
             $comment->where('post', $data['id']);
@@ -35,7 +36,7 @@ class Comments extends Controller
     public function delete($data)
     {
         Authorization::haveOrFail('comments_delete');
-        $view = View::byName(Panel\CommentDelete::class);
+        $view = View::byName(Views\CommentDelete::class);
 
         $comment = Comment::byId($data['id']);
         $view->setComment($comment);
@@ -59,7 +60,7 @@ class Comments extends Controller
     public function edit($data)
     {
         Authorization::haveOrFail('comments_edit');
-        $view = View::byName(Panel\CommentEdit::class);
+        $view = View::byName(Views\CommentEdit::class);
 
         $comment = Comment::byId($data['id']);
         $view->setComment($comment);
@@ -110,7 +111,7 @@ class Comments extends Controller
                 }
                 $comment->save();
                 $this->response->setStatus(true);
-                $this->response->Go(userpanel\url('news/comment/edit/'.$comment->id));
+                $this->response->Go(userViews\url('news/comment/edit/'.$comment->id));
             } catch (InputValidation $error) {
                 $view->setFormError(FormError::fromException($error));
             }
