@@ -3,7 +3,7 @@
 namespace packages\news\Controllers;
 
 use packages\base;
-use packages\base\HTTP;
+use packages\base\Http;
 use packages\base\InputValidation;
 use packages\base\NotFound;
 use packages\base\NoViewException;

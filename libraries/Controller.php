@@ -3,7 +3,7 @@
 namespace packages\news;
 
 use packages\base\DB;
-use packages\base\HTTP;
+use packages\base\Http;
 use packages\base\Response;
 
 class Controller extends \packages\base\Controller

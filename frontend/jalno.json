@@ -6,9 +6,6 @@
 		"name" : "Jeyserver",
 		"website" : "http://www.jeyserver.com/"
 	},
-	"autoload": {
-		"directories": ["listeners", "views"]
-	},
 	"languages":{
 		"fa_IR" : "langs/fa_IR.json"
 	},
@@ -31,48 +28,6 @@
 		{
 			"name":"events/initializeDashboard",
 			"listener": "listeners/news/dashboard@initialize"
-		}
-	],
-	"views":[
-		{
-			"name":"views/news/panel/index",
-			"parent":"packages/news/views/panel/index",
-			"file":"html/post/list.php"
-		},
-		{
-			"name":"views/news/panel/comment",
-			"parent":"packages/news/views/panel/comment",
-			"file":"html/comment/list.php"
-		},
-		{
-			"name":"views/news/panel/edit",
-			"parent":"packages/news/views/panel/edit",
-			"file":"html/post/edit.php"
-		},
-		{
-			"name":"views/news/panel/delete",
-			"parent":"packages/news/views/panel/delete",
-			"file":"html/post/delete.php"
-		},
-		{
-			"name":"views/news/panel/add",
-			"parent":"packages/news/views/panel/add",
-			"file":"html/post/add.php"
-		},
-		{
-			"name":"views/news/panel/commentDelete",
-			"parent":"packages/news/views/panel/commentDelete",
-			"file":"html/comment/delete.php"
-		},
-		{
-			"name":"views/news/panel/commentEdit",
-			"parent":"packages/news/views/panel/commentEdit",
-			"file":"html/comment/edit.php"
-		},
-		{
-			"name":"views/news/panel/view",
-			"parent":"packages/news/views/panel/view",
-			"file":"html/post/view.php"
 		}
 	]
 }
