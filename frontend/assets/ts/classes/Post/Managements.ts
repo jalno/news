@@ -1,4 +1,3 @@
-import * as $ from "jquery";
 import "../jquery.userAutoComplete";
 import "dropzone";
 import "jquery-inputlimiter";
