@@ -1,14 +1,6 @@
 {
 	"name" : "clipone",
 	"title":"Clip One",
-	"version" : "1.0.0",
-	"author" : {
-		"name" : "Jeyserver",
-		"website" : "http://www.jeyserver.com/"
-	},
-	"languages":{
-		"fa_IR" : "langs/fa_IR.json"
-	},
 	"assets":[
 		{"type":"package", "name":"jquery", "version": "^3.2.1"},
 		{"type":"package", "name":"jquery-ui", "version": "^1.12.1"},
@@ -28,6 +20,11 @@
 		{
 			"name":"events/initializeDashboard",
 			"listener": "listeners/news/dashboard@initialize"
+		},
+		{
+			"name": "themes/clipone/Events/Navigation/Initial",
+			"listener": "themes/clipone/Listeners/News/NavigationListener@initial"
 		}
+		
 	]
 }

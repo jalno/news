@@ -28,9 +28,4 @@ class Comment extends View
     {
         return $this->getData('news');
     }
-
-    public static function onSourceLoad()
-    {
-        self::$navigation = Authorization::is_accessed('list');
-    }
 }
