@@ -18,13 +18,13 @@
 	],
 	"events": [
 		{
-			"name":"events/initializeDashboard",
-			"listener": "listeners/news/dashboard@initialize"
-		},
-		{
 			"name": "themes/clipone/Events/Navigation/Initial",
 			"listener": "themes/clipone/Listeners/News/NavigationListener@initial"
+		},
+		{
+
+			"name":"themes/clipone/Events/InitializeDashboard",
+			"listener": "themes/clipone/Listeners/News/Dashboard@initialize"
 		}
-		
 	]
 }

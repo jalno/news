@@ -14,7 +14,7 @@ use packages\news\Controller;
 use packages\news\Events;
 use packages\news\NewPost;
 use packages\news\View;
-use packages\news\Views;
+use themes\clipone\Views\News\Panel as Views;
 use packages\userpanel;
 use packages\userpanel\Date;
 
@@ -22,7 +22,7 @@ class News extends Controller
 {
     public function index(): Response
     {
-        $view = View::byName(Views\News\Index::class);
+        $view = View::byName(Views\Index::class);
         if ($view) {
             $this->response->setView($view);
             $new = new NewPost();
@@ -45,7 +45,7 @@ class News extends Controller
             throw new NotFound();
         }
         try {
-            $view = View::byName(Views\News\View::class);
+            $view = View::byName(Views\View::class);
         } catch (NoViewException $error) {
             $this->response->Go(userpanel\url('news/view/'.$new->id));
         }
@@ -130,7 +130,7 @@ class News extends Controller
         if (!$news = $new->paginate($this->page)) {
             throw new NotFound();
         }
-        $view = View::byName(Views\News\Archive::class);
+        $view = View::byName(Views\Archive::class);
         $view->setNews($news);
         $view->setPaginate($this->page, base\DB::totalCount(), $this->items_per_page);
         $this->response->setStatus(true);
@@ -149,7 +149,7 @@ class News extends Controller
         if (!$news = $new->paginate($this->page)) {
             throw new NotFound();
         }
-        $view = View::byName(Views\News\Author::class);
+        $view = View::byName(Views\Author::class);
         $view->setNews($news);
         $view->setPaginate($this->page, base\DB::totalCount(), $this->items_per_page);
         $this->response->setStatus(true);
