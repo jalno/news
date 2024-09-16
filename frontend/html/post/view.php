@@ -17,7 +17,7 @@ $this->the_header();
             <div class="panel-body">
 				<?php echo $this->new->content; ?>
 			</div>
-			<div class="panel-footer"><?php echo Translator::trans('news.date').':'.Date::format('l j F Y', $this->new->date); ?></div>
+			<div class="panel-footer"><?php echo t('news.date').':'.Date::format('l j F Y', $this->new->date); ?></div>
         </div>
     </div>
 </div>

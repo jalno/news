@@ -21,8 +21,8 @@ class Add extends NewADD
     public function __beforeLoad()
     {
         $this->setTitle([
-            Translator::trans('news'),
-            Translator::trans('add'),
+            t('news'),
+            t('add'),
         ]);
         Navigation::active('news/addnew');
         $this->setUserInput();

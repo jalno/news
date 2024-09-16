@@ -15,8 +15,8 @@ class CommentDelete extends \packages\news\Views\Panel\CommentDelete
     public function __beforeLoad()
     {
         $this->setTitle([
-            Translator::trans('comment'),
-            Translator::trans('delete'),
+            t('comment'),
+            t('delete'),
         ]);
         Navigation::active('news/comments');
     }

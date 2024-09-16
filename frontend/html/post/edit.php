@@ -22,7 +22,7 @@ $this->the_header();
 			<?php
         $this->createField([
             'name' => 'title',
-            'label' => Translator::trans('news.title'),
+            'label' => t('news.title'),
         ]);
 ?>
 		</div>
@@ -34,7 +34,7 @@ $this->the_header();
 					<div class="panel panel-white panel-text">
 						<div class="panel-heading">
 							<i class="fa fa-edit"></i>
-							<span><?php echo Translator::trans('news.text'); ?></span>
+							<span><?php echo t('news.text'); ?></span>
 							<div class="panel-tools">
 								<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 							</div>
@@ -60,9 +60,9 @@ $this->the_header();
 						<div class="panel panel-white">
 							<div class="panel-heading">
 								<i class="fa fa-paperclip"></i>
-								<span><?php echo Translator::trans('blog.post.files'); ?></span>
+								<span><?php echo t('blog.post.files'); ?></span>
 								<div class="panel-tools">
-									<a class="btn btn-xs btn-link btn-add tooltips" href="#" title="<?php echo Translator::trans('blog.post.files.add'); ?>"><i class="fa fa-plus"></i></a>
+									<a class="btn btn-xs btn-link btn-add tooltips" href="#" title="<?php echo t('blog.post.files.add'); ?>"><i class="fa fa-plus"></i></a>
 									<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 								</div>
 							</div>
@@ -88,7 +88,7 @@ $this->the_header();
 							</div>
 						</div>
 						<div class="no-file">
-							<i class="fa fa-cloud-upload"></i><?php echo Translator::trans('blog.post.files.drag&drop'); ?>
+							<i class="fa fa-cloud-upload"></i><?php echo t('blog.post.files.drag&drop'); ?>
 						</div>
 					</div>
 				</div>
@@ -98,7 +98,7 @@ $this->the_header();
 			<div class="panel panel-white panel-details">
 				<div class="panel-heading">
 					<i class="fa fa-clock-o"></i>
-					<span><?php echo Translator::trans('news.post.details'); ?></span>
+					<span><?php echo t('news.post.details'); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
@@ -109,39 +109,39 @@ $this->the_header();
 					<?php
                     $this->createField([
                         'name' => 'date',
-                        'label' => Translator::trans('news.date'),
+                        'label' => t('news.date'),
                         'value' => Date::format('Y/m/d H:i', Date::time()),
                         'class' => 'form-control ltr',
                     ]);
 $this->createField([
     'type' => 'select',
     'name' => 'status',
-    'label' => Translator::trans('news.status'),
+    'label' => t('news.status'),
     'options' => [
         [
-            'title' => Translator::trans('new.published'),
+            'title' => t('new.published'),
             'value' => Post::published,
         ],
         [
-            'title' => Translator::trans('new.unpublished'),
+            'title' => t('new.unpublished'),
             'value' => Post::unpublished,
         ],
     ],
 ]);
 $this->createField([
     'name' => 'author_name',
-    'label' => Translator::trans('news.author'),
+    'label' => t('news.author'),
 ]);
 ?>
 				</div>
 				<div class="panel-footer">
-					<button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o"></i> <?php echo Translator::trans('news.post.save'); ?></button>
+					<button type="submit" class="btn btn-success btn-block"><i class="fa fa-floppy-o"></i> <?php echo t('news.post.save'); ?></button>
 				</div>
 			</div>
 			<div class="panel panel-white panel-description">
 				<div class="panel-heading">
 					<i class="fa fa-file-text-o"></i>
-					<span><?php echo Translator::trans('news.description'); ?></span>
+					<span><?php echo t('news.description'); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
@@ -159,7 +159,7 @@ $this->createField([
 			<div class="panel panel-white panel-thumbnail">
 				<div class="panel-heading">
 					<i class="fa fa-picture-o"></i>
-					<span><?php echo Translator::trans('news.post.thumbnail'); ?></span>
+					<span><?php echo t('news.post.thumbnail'); ?></span>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
