@@ -28,12 +28,12 @@ $this->the_header();
 						<thead>
 							<tr>
 								<th class="center">#</th>
-								<th><?php echo Translator::trans('comments.text'); ?></th>
-								<th><?php echo Translator::trans('comments.post'); ?></th>
-								<th><?php echo Translator::trans('comments.date'); ?></th>
-								<th><?php echo Translator::trans('comments.name'); ?></th>
-								<th><?php echo Translator::trans('comments.email'); ?></th>
-								<th><?php echo Translator::trans('comments.status'); ?></th>
+								<th><?php echo t('comments.text'); ?></th>
+								<th><?php echo t('comments.post'); ?></th>
+								<th><?php echo t('comments.date'); ?></th>
+								<th><?php echo t('comments.name'); ?></th>
+								<th><?php echo t('comments.email'); ?></th>
+								<th><?php echo t('comments.status'); ?></th>
 								<?php if ($hasButtons) { ?><th></th><?php } ?>
 							</tr>
 						</thead>
@@ -60,7 +60,7 @@ $this->the_header();
 								<td><?php echo Date::format('Y/m/d H:i', $row->date); ?></td>
 								<td><?php echo $row->name; ?></td>
 								<td><?php echo $row->email; ?></td>
-								<td class="hidden-xs"><span class="<?php echo $statusClass; ?>"><?php echo Translator::trans($statusTxt); ?></span></td>
+								<td class="hidden-xs"><span class="<?php echo $statusClass; ?>"><?php echo t($statusTxt); ?></span></td>
 								<?php
 				                if ($hasButtons) {
 				                    echo '<td class="center">'.$this->genButtons().'</td>';
@@ -74,7 +74,7 @@ $this->the_header();
 					</table>
 				</div>
 			<?php } else { ?>
-					<p><?php echo Translator::trans('No.comments.unpublished'); ?></p>
+					<p><?php echo t('No.comments.unpublished'); ?></p>
 			<?php } ?>
 			</div>
 		</div>

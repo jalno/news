@@ -16,9 +16,9 @@ class Comment extends NewsComment
     public function __beforeLoad()
     {
         $this->setTitle([
-            Translator::trans('news'),
-            Translator::trans('list'),
-            Translator::trans('news.unpublished'),
+            t('news'),
+            t('list'),
+            t('news.unpublished'),
         ]);
         Navigation::active('news/comments');
         $this->setButtons();
@@ -27,12 +27,12 @@ class Comment extends NewsComment
     public function setButtons()
     {
         $this->setButton('comment_edit', $this->canEdit, [
-            'title' => Translator::trans('edit'),
+            'title' => t('edit'),
             'icon' => 'fa fa-edit',
             'classes' => ['btn', 'btn-xs', 'btn-warning'],
         ]);
         $this->setButton('comment_delete', $this->canDel, [
-            'title' => Translator::trans('delete'),
+            'title' => t('delete'),
             'icon' => 'fa fa-times',
             'classes' => ['btn', 'btn-xs', 'btn-bricky'],
         ]);

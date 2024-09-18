@@ -1,0 +1,14 @@
+{
+  "usertype.permissions.news": "News",
+  "usertype.permissions.news_list": "News List",
+  "usertype.permissions.news_add": "Add News",
+  "usertype.permissions.news_edit": "Edit News",
+  "usertype.permissions.news_delete": "Delete Mews",
+  "usertype.permissions.news_comments": "News Comments",
+  "usertype.permissions.news_comments_list": "News Comments List",
+  "usertype.permissions.news_comments_edit": "Edit News Comment",
+  "usertype.permissions.news_comments_delete": "Delete News Comment",
+  "usertype.permissions.news_files": "News Files",
+  "usertype.permissions.news_files_upload": "Upload File For News",
+  "usertype.permissions.news_files_delete": "Delete News Files"
+}

@@ -1,3 +1,4 @@
+import $ from "jquery";
 import "../jquery.userAutoComplete";
 export default class List{
 	private static $form = $('#news-post-search');

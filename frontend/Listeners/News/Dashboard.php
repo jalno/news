@@ -3,7 +3,6 @@
 namespace themes\clipone\Listeners\News;
 
 use packages\base;
-use packages\base\Translator;
 use packages\news\NewPost;
 use themes\clipone\Views\Dashboard as View;
 use themes\clipone\Views\Dashboard\Panel;

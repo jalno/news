@@ -13,11 +13,11 @@ $this->the_header();
 	<?php if (!empty($this->getNews())) { ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-envelope"></i> <?php echo Translator::trans('news'); ?>
+				<i class="fa fa-envelope"></i> <?php echo t('news'); ?>
 				<div class="panel-tools">
-					<a class="btn btn-xs btn-link tooltips" title="<?php echo Translator::trans('search'); ?>" href="#search" data-toggle="modal" data-original-title=""><i class="fa fa-search"></i></a>
+					<a class="btn btn-xs btn-link tooltips" title="<?php echo t('search'); ?>" href="#search" data-toggle="modal" data-original-title=""><i class="fa fa-search"></i></a>
 					<?php if ($this->canAdd) { ?>
-					<a class="btn btn-xs btn-link tooltips" title="<?php echo Translator::trans('news.add'); ?>" href="<?php echo userpanel\url('news/add'); ?>"><i class="fa fa-plus"></i></a>
+					<a class="btn btn-xs btn-link tooltips" title="<?php echo t('news.add'); ?>" href="<?php echo userpanel\url('news/add'); ?>"><i class="fa fa-plus"></i></a>
 					<?php } ?>
 					<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 				</div>
@@ -31,12 +31,12 @@ $this->the_header();
 						<thead>
 							<tr>
 								<th class="center">#</th>
-								<th><?php echo Translator::trans('news.title'); ?></th>
-								<th><?php echo Translator::trans('news.date'); ?></th>
-								<th><?php echo Translator::trans('news.author'); ?></th>
-								<th><?php echo Translator::trans('news.view'); ?></th>
-								<th><?php echo Translator::trans('news.comments'); ?></th>
-								<th><?php echo Translator::trans('news.status'); ?></th>
+								<th><?php echo t('news.title'); ?></th>
+								<th><?php echo t('news.date'); ?></th>
+								<th><?php echo t('news.author'); ?></th>
+								<th><?php echo t('news.view'); ?></th>
+								<th><?php echo t('news.comments'); ?></th>
+								<th><?php echo t('news.status'); ?></th>
 								<?php if ($hasButtons) { ?><th></th><?php } ?>
 							</tr>
 						</thead>
@@ -65,7 +65,7 @@ $this->the_header();
 								<td><a href="<?php echo userpanel\url('users/view/'.$row->author->id); ?>"><?php echo $row->author->name.' '.$row->author->lastname; ?></a></td>
 								<td><span class="badge"><?php echo $row->view; ?></span></td>
 								<td><a class="badge" href="<?php echo $comment; ?>"><?php echo count($row->comments); ?></a></td>
-								<td class="hidden-xs"><span class="<?php echo $statusClass; ?>"><?php echo Translator::trans($statusTxt); ?></span></td>
+								<td class="hidden-xs"><span class="<?php echo $statusClass; ?>"><?php echo t($statusTxt); ?></span></td>
 								<?php
 	                if ($hasButtons) {
 	                    echo '<td class="center">'.$this->genButtons().'</td>';
@@ -84,7 +84,7 @@ $this->the_header();
 		<div class="modal fade" id="search" tabindex="-1" data-show="true" role="dialog">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"><?php echo Translator::trans('search'); ?></h4>
+				<h4 class="modal-title"><?php echo t('search'); ?></h4>
 			</div>
 			<div class="modal-body">
 				<form id="news-post-search" class="form-horizontal" action="<?php echo userpanel\url('news'); ?>" method="GET">
@@ -95,11 +95,11 @@ $this->the_header();
 	            'name' => 'id',
 	            'type' => 'number',
 	            'ltr' => true,
-	            'label' => Translator::trans('news.post.id'),
+	            'label' => t('news.post.id'),
 	        ],
 	        [
 	            'name' => 'title',
-	            'label' => Translator::trans('news.title'),
+	            'label' => t('news.title'),
 	        ],
 	        [
 	            'name' => 'author',
@@ -107,15 +107,15 @@ $this->the_header();
 	        ],
 	        [
 	            'name' => 'author_name',
-	            'label' => Translator::trans('news.author'),
+	            'label' => t('news.author'),
 	        ],
 	        [
 	            'name' => 'word',
-	            'label' => Translator::trans('news.post.wordKey'),
+	            'label' => t('news.post.wordKey'),
 	        ],
 	        [
 	            'type' => 'select',
-	            'label' => Translator::trans('search.comparison'),
+	            'label' => t('search.comparison'),
 	            'name' => 'comparison',
 	            'options' => $this->getComparisonsForSelect(),
 	        ],
@@ -127,8 +127,8 @@ $this->the_header();
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" form="news-post-search" class="btn btn-success"><?php echo Translator::trans('search'); ?></button>
-				<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><?php echo Translator::trans('cancel'); ?></button>
+				<button type="submit" form="news-post-search" class="btn btn-success"><?php echo t('search'); ?></button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><?php echo t('cancel'); ?></button>
 			</div>
 		</div>
 	<?php } ?>

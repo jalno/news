@@ -12,7 +12,7 @@ $this->the_header();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-edit"></i>
-                <span><?php echo Translator::trans('edit').' '.Translator::trans('new').' #'.$this->getComment()->id; ?></span>
+                <span><?php echo t('edit').' '.t('new').' #'.$this->getComment()->id; ?></span>
 				<div class="panel-tools">
 					<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 				</div>
@@ -23,14 +23,14 @@ $this->the_header();
                         <div class="col-md-6">
 	                        <?php $this->createField([
 	                            'name' => 'name',
-	                            'label' => Translator::trans('comments.name'),
+	                            'label' => t('comments.name'),
 	                            'value' => $this->getComment()->name,
 	                        ]);
 
 $this->createField([
     'type' => 'email',
     'name' => 'email',
-    'label' => Translator::trans('comments.email'),
+    'label' => t('comments.email'),
     'value' => $this->getComment()->email,
     'class' => 'form-control ltr',
 ]);
@@ -41,18 +41,18 @@ $this->createField([
 $this->createField([
     'name' => 'status',
     'type' => 'select',
-    'label' => Translator::trans('comments.status'),
+    'label' => t('comments.status'),
     'options' => [
         [
-            'title' => Translator::trans('comment.accepted'),
+            'title' => t('comment.accepted'),
             'value' => Comment::accepted,
         ],
         [
-            'title' => Translator::trans('comment.pending'),
+            'title' => t('comment.pending'),
             'value' => Comment::pending,
         ],
         [
-            'title' => Translator::trans('comment.unverified'),
+            'title' => t('comment.unverified'),
             'value' => Comment::unverified,
         ],
     ],
@@ -60,7 +60,7 @@ $this->createField([
 ]);
 $this->createField([
     'name' => 'date',
-    'label' => Translator::trans('comments.date'),
+    'label' => t('comments.date'),
     'value' => Date::format('Y/m/d H:i', $this->getComment()->date),
     'class' => 'form-control ltr',
 ]);
@@ -70,7 +70,7 @@ $this->createField([
 							<?php $this->createField([
 							    'name' => 'text',
 							    'type' => 'textarea',
-							    'label' => Translator::trans('comments.text'),
+							    'label' => t('comments.text'),
 							    'class' => 'ckeditor',
 							    'value' => $this->getComment()->text,
 							]);
@@ -79,8 +79,8 @@ $this->createField([
 						<div class="col-md-12">
 			                <hr>
 			                <p>
-			                    <a href="<?php echo userpanel\url('news/comments'); ?>" class="btn btn-light-grey"><i class="fa fa-chevron-circle-right"></i> <?php echo Translator::trans('return'); ?></a>
-			                    <button type="submit" class="btn btn-yellow"><i class="fa fa-check-square-o"></i> <?php echo Translator::trans('update'); ?></button>
+			                    <a href="<?php echo userpanel\url('news/comments'); ?>" class="btn btn-light-grey"><i class="fa fa-chevron-circle-right"></i> <?php echo t('return'); ?></a>
+			                    <button type="submit" class="btn btn-yellow"><i class="fa fa-check-square-o"></i> <?php echo t('update'); ?></button>
 			                </p>
 						</div>
 	                </form>

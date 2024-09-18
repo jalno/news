@@ -16,8 +16,8 @@ class Delete extends NewDelete
     public function __beforeLoad()
     {
         $this->setTitle([
-            Translator::trans('news'),
-            Translator::trans('delete'),
+            t('news'),
+            t('delete'),
         ]);
         Navigation::active('news/index');
     }

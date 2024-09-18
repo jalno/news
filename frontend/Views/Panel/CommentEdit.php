@@ -16,8 +16,8 @@ class CommentEdit extends \packages\news\Views\Panel\CommentEdit
     public function __beforeLoad()
     {
         $this->setTitle([
-            Translator::trans('comment'),
-            Translator::trans('edit'),
+            t('comment'),
+            t('edit'),
         ]);
         Navigation::active('news/comments');
         $this->addAssets();

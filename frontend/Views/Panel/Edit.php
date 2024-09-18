@@ -26,8 +26,8 @@ class Edit extends NewEdit
     {
         $this->post = $this->getPost();
         $this->setTitle([
-            Translator::trans('news'),
-            Translator::trans('edit'),
+            t('news'),
+            t('edit'),
         ]);
         Navigation::active('news/index');
         $this->addJSFile(Theme::url('assets/plugins/ckeditor/ckeditor.js'));
@@ -54,12 +54,12 @@ class Edit extends NewEdit
     public function setButtons()
     {
         $this->setButton('file_link', true, [
-            'title' => Translator::trans('news.post.files.link'),
+            'title' => t('news.post.files.link'),
             'icon' => 'fa fa-link',
             'classes' => ['btn', 'btn-xs', 'btn-info'],
         ]);
         $this->setButton('file_delete', Authorization::is_accessed('files_delete'), [
-            'title' => Translator::trans('delete'),
+            'title' => t('delete'),
             'icon' => 'fa fa-times',
             'classes' => ['btn', 'btn-xs', 'btn-bricky', 'btn-delete'],
         ]);
@@ -68,15 +68,15 @@ class Edit extends NewEdit
     public function getFileSize(File $file)
     {
         if ($file->size < 1024) {
-            return Translator::trans('news.files.size.byBytes', ['bytes' => $file->size]);
+            return t('news.files.size.byBytes', ['bytes' => $file->size]);
         } elseif ($file->size < 1024 * 1024) {
-            return Translator::trans('news.files.size.byKB', ['kb' => round($file->size / 1024)]);
+            return t('news.files.size.byKB', ['kb' => round($file->size / 1024)]);
         } elseif ($file->size < 1024 * 1024 * 1024) {
-            return Translator::trans('news.files.size.byMB', ['mb' => round($file->size / 1024 / 1024)]);
+            return t('news.files.size.byMB', ['mb' => round($file->size / 1024 / 1024)]);
         } elseif ($file->size < 1024 * 1024 * 1024 * 1024) {
-            return Translator::trans('news.files.size.byGB', ['gb' => round($file->size / 1024 / 1024 / 1024)]);
+            return t('news.files.size.byGB', ['gb' => round($file->size / 1024 / 1024 / 1024)]);
         } else {
-            return Translator::trans('news.files.size.byTB', ['tb' => round($file->size / 1024 / 1024 / 1024 / 1024)]);
+            return t('news.files.size.byTB', ['tb' => round($file->size / 1024 / 1024 / 1024 / 1024)]);
         }
     }
 

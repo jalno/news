@@ -12,7 +12,6 @@ class Index extends ListView
     protected $canAdd;
     protected $canEdit;
     protected $canDel;
-    protected static $navigation;
 
     public function __construct()
     {
@@ -29,10 +28,5 @@ class Index extends ListView
     public function getNews()
     {
         return $this->getDataList();
-    }
-
-    public static function onSourceLoad()
-    {
-        self::$navigation = Authorization::is_accessed('list');
     }
 }
