@@ -2,6 +2,7 @@
 
 namespace packages\news\Controllers;
 
+use Exception;
 use packages\base;
 use packages\base\Http;
 use packages\base\InputValidation;
@@ -13,16 +14,26 @@ use packages\news\Comment;
 use packages\news\Controller;
 use packages\news\Events;
 use packages\news\NewPost;
-use packages\news\View;
-use themes\clipone\Views\News\Panel as Views;
+use packages\base\View;
 use packages\userpanel;
 use packages\userpanel\Date;
 
 class News extends Controller
 {
+    protected function findView(string $name): View
+    {
+        $namespace = config("news.views.namespace");
+        if (!$namespace or !str_ends_with($namespace, "\\")) {
+            throw new Exception("invalid views namespace");
+        }
+        $name = $namespace . $name;
+    
+        return View::byName($name);
+    }
+
     public function index(): Response
     {
-        $view = View::byName(Views\Index::class);
+        $view = $this->findView("Index");
         if ($view) {
             $this->response->setView($view);
             $new = new NewPost();
@@ -45,7 +56,7 @@ class News extends Controller
             throw new NotFound();
         }
         try {
-            $view = View::byName(Views\View::class);
+            $view = $this->findView("View");
         } catch (NoViewException $error) {
             $this->response->Go(userpanel\url('news/view/'.$new->id));
         }
@@ -130,7 +141,7 @@ class News extends Controller
         if (!$news = $new->paginate($this->page)) {
             throw new NotFound();
         }
-        $view = View::byName(Views\Archive::class);
+        $view = $this->findView("Archive");
         $view->setNews($news);
         $view->setPaginate($this->page, base\DB::totalCount(), $this->items_per_page);
         $this->response->setStatus(true);
@@ -149,7 +160,7 @@ class News extends Controller
         if (!$news = $new->paginate($this->page)) {
             throw new NotFound();
         }
-        $view = View::byName(Views\Author::class);
+        $view = $this->findView("Author");
         $view->setNews($news);
         $view->setPaginate($this->page, base\DB::totalCount(), $this->items_per_page);
         $this->response->setStatus(true);

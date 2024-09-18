@@ -4,6 +4,8 @@ namespace packages\news;
 
 use packages\base\DB;
 use packages\base\DB\DBObject;
+use packages\base\Packages;
+use packages\base\Options;
 
 class NewPost extends DBObject
 {
@@ -77,4 +79,13 @@ class NewPost extends DBObject
             $file->save();
         }
     }
+    public function getImageUrl(): string {
+        $storage = Packages::package('news')->getStorage("public");
+        $defaultImage = Options::get('packages.news.defaultimage');
+        $image = $this->image ? $this->image : $defaultImage;
+        $image = $storage->file($image);
+        $image = $storage->getURL($image);
+        return $image;
+    }
+
 }
